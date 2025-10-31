@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+   <meta charset="utf-8">
+    <title>Actualités - CAIDA</title>
+    <meta name="description"
+          content="Restez informé des dernières actualités, événements et développements de CAIDA dans le domaine de l'innovation agricole en Afrique.">
+
+    <meta name="keywords" content="caida, actualités, nouvelles, événements, innovation agricole, afrique">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="https://www.coraf.org/css/style.css">
+    <link rel="stylesheet" href="https://www.coraf.org/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i&display=swap" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="icon" href="https://via.placeholder.com/64" type="image/x-icon">
+    
+    <style>
+        .page-header {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1586771107445-d3ca888129ff?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
+            margin-bottom: 50px;
+        }
+        
+        .news-card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            margin-bottom: 30px;
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        .news-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .news-card img {
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .news-category {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background-color: #28a745;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        .event-card {
+            border-left: 5px solid #007bff;
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 20px;
+            background-color: #f8f9fa;
+        }
+        
+        .event-date {
+            background-color: #007bff;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+        
+        .event-day {
+            font-size: 20px;
+            font-weight: bold;
+            line-height: 1;
+        }
+        
+        .event-month {
+            font-size: 12px;
+            line-height: 1;
+        }
+        
+        .press-card {
+            border: 1px solid #e9ecef;
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .press-logo {
+            max-height: 50px;
+            margin-right: 15px;
+            margin-bottom: 10px;
+        }
+        
+        .filter-buttons .btn {
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .news-meta {
+            color: #6c757d;
+            font-size: 14px;
+        }
+        
+        .btn-read-more {
+            background-color: #28a745;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-read-more:hover {
+            background-color: #218838;
+            color: white;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav id="nav-element" class="navbar general-nav navbar-expand-lg navbar-light bg-white">
+            <div class="container">
+                <a class="navbar-brand" href="/">
+                    <img src="https://via.placeholder.com/150x50?text=CAIDA+Logo" alt="logo-caida">
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse position-relative navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/">Accueil</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                À Propos
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="/mission-et-vision">Mission et vision</a>
+                                <a class="dropdown-item" href="/organisation">Organisation et gouvernance</a>
+                                <a class="dropdown-item" href="/centres-specialises">Centres spécialisés</a>
+                                <a class="dropdown-item" href="/partenaires">Partenaires</a>
+                                <a class="dropdown-item" href="/equipe">Notre équipe</a>
+                                <a class="dropdown-item" href="/ethique">Éthique & politique</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownProjet" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Projets
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownProjet">
+                                <a class="dropdown-item" href="/domaines-intervention">Domaines d'interventions</a>
+                                <a class="dropdown-item" href="/portfolio">Portefeuilles de projet</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdownActualites" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Actualités
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownActualites">
+                                <a class="dropdown-item active" href="/actualite">Actualités</a>
+                                <a class="dropdown-item" href="/espace-presse">Espace presse</a>
+                                <a class="dropdown-item" href="/evenement">Évènements</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownImpact" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Impact
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownImpact">
+                                <a class="dropdown-item" href="/resultat">Résultats</a>
+                                <a class="dropdown-item" href="/histoire-impact">Histoires d'impact</a>
+                                <a class="dropdown-item" href="/blog">Blog</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownRessources" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Ressources
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownRessources">
+                                <a class="dropdown-item" href="/ressources">Publications</a>
+                                <a class="dropdown-item" href="/centres-de-connaissance">Centres de connaissance</a>
+                                <a class="dropdown-item" href="/directives-de-marque">Directive de marque</a>
+                                <a class="dropdown-item" href="/reglement-lignes-directrices">Règlements et lignes directives</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownOpportunités" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Opportunités
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownOpportunités">
+                                <a class="dropdown-item" href="/carrieres">Carrières</a>
+                                <a class="dropdown-item" href="/passation-marche">Passation de marchés</a>
+                            </div>
+                        </li>
+
+                        <button id="" class="btn wb-search-btn">
+                            <i class="fa fa-search" aria-hidden="true"></i>
+                        </button>
+                    </ul>
+                    <div class="hide-element">
+                        <div class="search-bar-block d-flex align-items-center ">
+                            <button class="btn-hide-form ">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots" viewBox="0 0 16 16">
+                                    <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
+                                </svg>
+                            </button>
+                            <form action="/homesearch" class="mb-0 d-flex align-items-center">
+                                <input type="search" name="search-input" id="search" class="form-control mr-2" placeholder="Recherche" required>
+                                <button type="submit" class="btn btn-success btn-search"> <i class="fa fa-search" aria-hidden="true"></i></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    
+    <div class="content-page">
+        <div class="page-header text-center">
+            <div class="container">
+                <h1>Actualités</h1>
+                <p class="lead">Suivez les dernières nouvelles et développements de CAIDA</p>
+            </div>
+        </div>
+        
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="filter-buttons mb-4">
+                        <button class="btn btn-outline-success active" data-filter="all">Toutes les actualités</button>
+                        <button class="btn btn-outline-success" data-filter="projets">Projets</button>
+                        <button class="btn btn-outline-success" data-filter="partenariats">Partenariats</button>
+                        <button class="btn btn-outline-success" data-filter="innovations">Innovations</button>
+                        <button class="btn btn-outline-success" data-filter="evenements">Événements</button>
+                    </div>
+                    
+                    <div class="news-list">
+                        <div class="news-card card" data-category="projets">
+                            <div class="position-relative">
+                                <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" class="card-img-top" alt="Lancement projet agriculture intelligente">
+                                <span class="news-category">Projets</span>
+                            </div>
+                            <div class="card-body">
+                                <h3 class="card-title">Lancement du projet d'agriculture intelligente dans 5 nouveaux pays</h3>
+                                <p class="news-meta"><i class="fa fa-calendar"></i> 15 juin 2023 | <i class="fa fa-user"></i> Par l'équipe CAIDA</p>
+                                <p class="card-text">CAIDA étend son programme d'agriculture intelligente à cinq nouveaux pays d'Afrique de l'Ouest, visant à toucher 50 000 agriculteurs supplémentaires d'ici 2025.</p>
+                                <p>Le projet intègre des technologies de pointe comme l'irrigation de précision, des capteurs de sol et des applications mobiles pour optimiser la productivité agricole.</p>
+                                <a href="/actualite/lancement-projet-agriculture-intelligente" class="btn-read-more">Lire la suite</a>
+                            </div>
+                        </div>
+                        
+                        <div class="news-card card" data-category="partenariats">
+                            <div class="position-relative">
+                                <img src="https://images.unsplash.com/photo-1559021429-cb0c2c3416ab?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" class="card-img-top" alt="Partenariat avec AgriTech Solutions">
+                                <span class="news-category">Partenariats</span>
+                            </div>
+                            <div class="card-body">
+                                <h3 class="card-title">CAIDA signe un partenariat stratégique avec AgriTech Solutions</h3>
+                                <p class="news-meta"><i class="fa fa-calendar"></i> 2 juin 2023 | <i class="fa fa-user"></i> Par l'équipe CAIDA</p>
+                                <p class="card-text">Un nouveau partenariat avec AgriTech Solutions permettra de déployer des technologies agricoles avancées dans 10 000 exploitations pilotes à travers l'Afrique.</p>
+                                <p>Cette collaboration vise à combiner l'expertise technique d'AgriTech Solutions avec la connaissance terrain de CAIDA pour développer des solutions adaptées au contexte africain.</p>
+                                <a href="/actualite/partenariat-agritech-solutions" class="btn-read-more">Lire la suite</a>
+                            </div>
+                        </div>
+                        
+                        <div class="news-card card" data-category="innovations">
+                            <div class="position-relative">
+                                <img src="https://images.unsplash.com/photo-1586771107445-d3ca888129ff?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" class="card-img-top" alt="Nouvelle application mobile">
+                                <span class="news-category">Innovations</span>
+                            </div>
+                            <div class="card-body">
+                                <h3 class="card-title">Lancement de l'application mobile "AgriConseil" pour les agriculteurs</h3>
+                                <p class="news-meta"><i class="fa fa-calendar"></i> 20 mai 2023 | <i class="fa fa-user"></i> Par l'équipe CAIDA</p>
+                                <p class="card-text">CAIDA a développé une application mobile innovante qui fournit des conseils agricoles personnalisés aux producteurs en fonction de leur localisation et de leurs cultures.</p>
+                                <p>L'application utilise l'intelligence artificielle pour analyser les données climatiques, les conditions du sol et les tendances du marché, offrant des recommandations en temps réel aux agriculteurs.</p>
+                                <a href="/actualite/lancement-appli-agriconseil" class="btn-read-more">Lire la suite</a>
+                            </div>
+                        </div>
+                        
+                        <div class="news-card card" data-category="evenements">
+                            <div class="position-relative">
+                                <img src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" class="card-img-top" alt="Forum innovation agricole">
+                                <span class="news-category">Événements</span>
+                            </div>
+                            <div class="card-body">
+                                <h3 class="card-title">Forum annuel sur l'innovation agricole : les inscriptions sont ouvertes</h3>
+                                <p class="news-meta"><i class="fa fa-calendar"></i> 15 mai 2023 | <i class="fa fa-user"></i> Par l'équipe CAIDA</p>
+                                <p class="card-text">CAIDA organise son forum annuel sur l'innovation agricole les 15-17 juillet 2023 à Dakar, Sénégal. Cet événement rassemblera des experts, des agriculteurs et des décideurs politiques.</p>
+                                <p>Au programme : ateliers pratiques, démonstrations technologiques, tables rondes et sessions de networking pour favoriser les échanges sur les dernières innovations agricoles.</p>
+                                <a href="/actualite/forum-innovation-agricole" class="btn-read-more">Lire la suite</a>
+                            </div>
+                        </div>
+                        
+                        <div class="news-card card" data-category="projets">
+                            <div class="position-relative">
+                                <img src="https://images.unsplash.com/photo-1574943320219-553eb213f72d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" class="card-img-top" alt="Projet résilience climatique">
+                                <span class="news-category">Projets</span>
+                            </div>
+                            <div class="card-body">
+                                <h3 class="card-title">Nouveau projet pour renforcer la résilience climatique des agriculteurs</h3>
+                                <p class="news-meta"><i class="fa fa-calendar"></i> 5 mai 2023 | <i class="fa fa-user"></i> Par l'équipe CAIDA</p>
+                                <p class="card-text">CAIDA lance un projet ambitieux visant à aider les agriculteurs à s'adapter aux changements climatiques dans les régions les plus vulnérables d'Afrique.</p>
+                                <p>Le projet comprend la promotion de variétés résistantes à la sécheresse, des techniques de conservation de l'eau et des systèmes d'alerte précoce pour les phénomènes météorologiques extrêmes.</p>
+                                <a href="/actualite/projet-resilience-climatique" class="btn-read-more">Lire la suite</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <nav aria-label="Page navigation" class="mt-5">
+                        <ul class="pagination justify-content-center">
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#" tabindex="-1">Précédent</a>
+                            </li>
+                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">Suivant</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="sidebar">
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <h5 class="card-title">Événements à venir</h5>
+                                
+                                <div class="event-card d-flex">
+                                    <div class="event-date">
+                                        <div class="event-day">15</div>
+                                        <div class="event-month">JUILL</div>
+                                    </div>
+                                    <div>
+                                        <h6>Forum Innovation Agricole</h6>
+                                        <p class="mb-1">Dakar, Sénégal</p>
+                                        <small class="text-muted">15-17 juillet 2023</small>
+                                        <a href="/evenement/forum-innovation" class="btn-read-more btn-sm mt-2">Détails</a>
+                                    </div>
+                                </div>
+                                
+                                <div class="event-card d-flex">
+                                    <div class="event-date">
+                                        <div class="event-day">05</div>
+                                        <div class="event-month">AOÛT</div>
+                                    </div>
+                                    <div>
+                                        <h6>Atelier sur l'Agriculture de Précision</h6>
+                                        <p class="mb-1">Abidjan, Côte d'Ivoire</p>
+                                        <small class="text-muted">5-7 août 2023</small>
+                                        <a href="/evenement/atelier-precision" class="btn-read-more btn-sm mt-2">Détails</a>
+                                    </div>
+                                </div>
+                                
+                                <div class="event-card d-flex">
+                                    <div class="event-date">
+                                        <div class="event-day">20</div>
+                                        <div class="event-month">SEPT</div>
+                                    </div>
+                                    <div>
+                                        <h6>Conférence sur les Chaînes de Valeur</h6>
+                                        <p class="mb-1">Nairobi, Kenya</p>
+                                        <small class="text-muted">20-22 septembre 2023</small>
+                                        <a href="/evenement/conference-chaines-valeur" class="btn-read-more btn-sm mt-2">Détails</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <h5 class="card-title">Abonnez-vous à notre newsletter</h5>
+                                <p class="card-text">Recevez les dernières actualités de CAIDA directement dans votre boîte mail.</p>
+                                <form>
+                                    <div class="form-group">
+                                        <input type="email" class="form-control" placeholder="Votre adresse email" required>
+                                    </div>
+                                    <button type="submit" class="btn btn-success btn-block">S'abonner</button>
+                                </form>
+                            </div>
+                        </div>
+                        
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Dans la presse</h5>
+                                
+                                <div class="press-card">
+                                    <div class="d-flex align-items-center mb-2">
+                                        <img src="https://via.placeholder.com/100x30?text=LeMonde" alt="Le Monde" class="press-logo">
+                                        <span class="news-meta">10 juin 2023</span>
+                                    </div>
+                                    <h6>CAIDA révolutionne l'agriculture africaine par le digital</h6>
+                                    <a href="#" class="btn-read-more btn-sm">Lire l'article</a>
+                                </div>
+                                
+                                <div class="press-card">
+                                    <div class="d-flex align-items-center mb-2">
+                                        <img src="https://via.placeholder.com/100x30?text=JeuneAfrique" alt="Jeune Afrique" class="press-logo">
+                                        <span class="news-meta">25 mai 2023</span>
+                                    </div>
+                                    <h6>Innovation agricole : comment CAIDA transforme les pratiques</h6>
+                                    <a href="#" class="btn-read-more btn-sm">Lire l'article</a>
+                                </div>
+                                
+                                <div class="press-card">
+                                    <div class="d-flex align-items-center mb-2">
+                                        <img src="https://via.placeholder.com/100x30?text=RFI" alt="RFI" class="press-logo">
+                                        <span class="news-meta">15 mai 2023</span>
+                                    </div>
+                                    <h6>L'Afrique à l'heure de l'agriculture 4.0</h6>
+                                    <a href="#" class="btn-read-more btn-sm">Lire l'article</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer class="bg-dark text-white pt-5 pb-4 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>CAIDA</h5>
+                    <p>Centre Africain pour l'Innovation et le Développement Agricole</p>
+                    <p>Transforming African Agriculture through Innovation</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>Contact</h5>
+                    <p><i class="fa fa-map-marker"></i> Rue 123, Dakar, Sénégal</p>
+                    <p><i class="fa fa-phone"></i> +221 33 123 45 67</p>
+                    <p><i class="fa fa-envelope"></i> contact@caida.org</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>Suivez-nous</h5>
+                    <div class="social-links">
+                        <a href="#" class="text-white mr-3"><i class="fa fa-facebook"></i></a>
+                        <a href="#" class="text-white mr-3"><i class="fa fa-twitter"></i></a>
+                        <a href="#" class="text-white mr-3"><i class="fa fa-linkedin"></i></a>
+                        <a href="#" class="text-white"><i class="fa fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="bg-white">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <p>&copy; 2023 CAIDA. Tous droits réservés.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        $(document).ready(function(){
+            // Gestion de la barre de recherche
+            $('.wb-search-btn').click(function(){
+                $('.hide-element').toggleClass('hide-element');
+            });
+            
+            $('.btn-hide-form').click(function(){
+                $('.search-bar-block').parent().addClass('hide-element');
+            });
+            
+            // Filtrage des actualités
+            $('.filter-buttons .btn').click(function(){
+                $('.filter-buttons .btn').removeClass('active');
+                $(this).addClass('active');
+                
+                var filter = $(this).data('filter');
+                
+                if(filter === 'all') {
+                    $('.news-card').show();
+                } else {
+                    $('.news-card').hide();
+                    $('.news-card[data-category="' + filter + '"]').show();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

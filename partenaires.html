@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+   <meta charset="utf-8">
+    <title>Partenaires - CAIDA</title>
+    <meta name="description"
+          content="Découvrez les partenaires institutionnels, techniques et financiers de CAIDA qui contribuent à la transformation agricole en Afrique.">
+
+    <meta name="keywords" content="caida, partenaires, collaborations, alliances, institutions, afrique">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="https://www.coraf.org/css/style.css">
+    <link rel="stylesheet" href="https://www.coraf.org/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i&display=swap" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="icon" href="https://via.placeholder.com/64" type="image/x-icon">
+    
+    <style>
+        .page-header {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
+            margin-bottom: 50px;
+        }
+        
+        .partner-card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            margin-bottom: 30px;
+            height: 100%;
+            text-align: center;
+            padding: 30px 20px;
+        }
+        
+        .partner-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .partner-logo {
+            max-height: 80px;
+            margin-bottom: 20px;
+            filter: grayscale(100%);
+            transition: filter 0.3s ease;
+        }
+        
+        .partner-card:hover .partner-logo {
+            filter: grayscale(0%);
+        }
+        
+        .partner-type {
+            background-color: #28a745;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+        
+        .partnership-section {
+            background-color: #f8f9fa;
+            padding: 80px 0;
+        }
+        
+        .testimonial-card {
+            border-left: 5px solid #28a745;
+            border-radius: 5px;
+            padding: 30px;
+            margin-bottom: 30px;
+            background-color: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .testimonial-photo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 20px;
+        }
+        
+        .stats-section {
+            padding: 80px 0;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .stat-number {
+            font-size: 48px;
+            font-weight: bold;
+            color: #28a745;
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            font-size: 18px;
+            color: #6c757d;
+        }
+        
+        .collaboration-types {
+            padding: 80px 0;
+        }
+        
+        .collab-card {
+            text-align: center;
+            padding: 30px 20px;
+            border-radius: 10px;
+            background-color: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            height: 100%;
+            transition: transform 0.3s ease;
+            margin-bottom: 30px;
+        }
+        
+        .collab-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .collab-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            background-color: rgba(40, 167, 69, 0.1);
+            color: #28a745;
+            font-size: 32px;
+        }
+        
+        .btn-partner {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-partner:hover {
+            background-color: #218838;
+            color: white;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav id="nav-element" class="navbar general-nav navbar-expand-lg navbar-light bg-white">
+            <div class="container">
+                <a class="navbar-brand" href="/">
+                    <img src="https://via.placeholder.com/150x50?text=CAIDA+Logo" alt="logo-caida">
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse position-relative navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/">Accueil</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                À Propos
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="/mission-et-vision">Mission et vision</a>
+                                <a class="dropdown-item" href="/organisation">Organisation et gouvernance</a>
+                                <a class="dropdown-item" href="/centres-specialises">Centres spécialisés</a>
+                                <a class="dropdown-item active" href="/partenaires">Partenaires</a>
+                                <a class="dropdown-item" href="/equipe">Notre équipe</a>
+                                <a class="dropdown-item" href="/ethique">Éthique & politique</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownProjet" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Projets
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownProjet">
+                                <a class="dropdown-item" href="/domaines-intervention">Domaines d'interventions</a>
+                                <a class="dropdown-item" href="/portfolio">Portefeuilles de projet</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownActualites" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Actualités
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownActualites">
+                                <a class="dropdown-item" href="/actualite">Actualités</a>
+                                <a class="dropdown-item" href="/espace-presse">Espace presse</a>
+                                <a class="dropdown-item" href="/evenement">Évènements</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownImpact" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Impact
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownImpact">
+                                <a class="dropdown-item" href="/resultat">Résultats</a>
+                                <a class="dropdown-item" href="/histoire-impact">Histoires d'impact</a>
+                                <a class="dropdown-item" href="/blog">Blog</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownRessources" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Ressources
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownRessources">
+                                <a class="dropdown-item" href="/ressources">Publications</a>
+                                <a class="dropdown-item" href="/centres-de-connaissance">Centres de connaissance</a>
+                                <a class="dropdown-item" href="/directives-de-marque">Directive de marque</a>
+                                <a class="dropdown-item" href="/reglement-lignes-directrices">Règlements et lignes directives</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownOpportunités" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Opportunités
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownOpportunités">
+                                <a class="dropdown-item" href="/carrieres">Carrières</a>
+                                <a class="dropdown-item" href="/passation-marche">Passation de marchés</a>
+                            </div>
+                        </li>
+
+                        <button id="" class="btn wb-search-btn">
+                            <i class="fa fa-search" aria-hidden="true"></i>
+                        </button>
+                    </ul>
+                    <div class="hide-element">
+                        <div class="search-bar-block d-flex align-items-center ">
+                            <button class="btn-hide-form ">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots" viewBox="0 0 16 16">
+                                    <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
+                                </svg>
+                            </button>
+                            <form action="/homesearch" class="mb-0 d-flex align-items-center">
+                                <input type="search" name="search-input" id="search" class="form-control mr-2" placeholder="Recherche" required>
+                                <button type="submit" class="btn btn-success btn-search"> <i class="fa fa-search" aria-hidden="true"></i></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    
+    <div class="content-page">
+        <div class="page-header text-center">
+            <div class="container">
+                <h1>Partenaires</h1>
+                <p class="lead">Découvrez notre réseau de partenaires qui contribuent à la transformation agricole en Afrique</p>
+            </div>
+        </div>
+        
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-md-8 mx-auto text-center">
+                    <h2 class="mb-4">Notre Approche du Partenariat</h2>
+                    <p class="lead">Chez CAIDA, nous croyons que la collaboration est essentielle pour relever les défis complexes de l'agriculture africaine. Nous travaillons avec un réseau diversifié de partenaires pour maximiser notre impact.</p>
+                </div>
+            </div>
+            
+            <div class="collaboration-types">
+                <div class="container">
+                    <h2 class="text-center mb-5">Types de Collaboration</h2>
+                    
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="collab-card">
+                                <div class="collab-icon">
+                                    <i class="fa fa-university"></i>
+                                </div>
+                                <h4>Partenariats Institutionnels</h4>
+                                <p>Collaborations avec des gouvernements, agences internationales et organisations multilatérales pour influencer les politiques et déployer des programmes à grande échelle.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4">
+                            <div class="collab-card">
+                                <div class="collab-icon">
+                                    <i class="fa fa-flask"></i>
+                                </div>
+                                <h4>Partenariats de Recherche</h4>
+                                <p>Alliances avec des universités et instituts de recherche pour développer et tester des innovations agricoles adaptées au contexte africain.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4">
+                            <div class="collab-card">
+                                <div class="collab-icon">
+                                    <i class="fa fa-industry"></i>
+                                </div>
+                                <h4>Partenariats avec le Secteur Privé</h4>
+                                <p>Collaborations avec des entreprises pour développer des solutions commercialement viables et créer des marchés pour les produits agricoles.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row mt-4">
+                        <div class="col-md-4">
+                            <div class="collab-card">
+                                <div class="collab-icon">
+                                    <i class="fa fa-users"></i>
+                                </div>
+                                <h4>Partenariats avec la Société Civile</h4>
+                                <p>Alliances avec des ONG et organisations communautaires pour assurer l'appropriation locale et l'impact durable de nos interventions.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4">
+                            <div class="collab-card">
+                                <div class="collab-icon">
+                                    <i class="fa fa-graduation-cap"></i>
+                                </div>
+                                <h4>Partenariats de Renforcement des Capacités</h4>
+                                <p>Collaborations avec des institutions de formation pour développer les compétences des acteurs de la chaîne de valeur agricole.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4">
+                            <div class="collab-card">
+                                <div class="collab-icon">
+                                    <i class="fa fa-exchange"></i>
+                                </div>
+                                <h4>Partenariats d'Échange de Connaissances</h4>
+                                <p>Réseaux et plateformes pour faciliter le partage d'expériences et de meilleures pratiques entre différents acteurs.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="partnership-section">
+                <div class="container">
+                    <h2 class="text-center mb-5">Nos Partenaires</h2>
+                    
+                    <h3 class="mb-4">Partenaires Institutionnels et Financiers</h3>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="partner-card">
+                                <span class="partner-type">Institutionnel</span>
+                                <img src="https://via.placeholder.com/150x80?text=Banque+Mondiale" alt="Banque Mondiale" class="partner-logo">
+                                <h5>Banque Mondiale</h5>
+                                <p>Partenariat pour le financement de projets d'agriculture résiliente au changement climatique dans 8 pays d'Afrique de l'Ouest.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4">
+                            <div class="partner-card">
+                                <span class="partner-type">Institutionnel</span>
+                                <img src="https://via.placeholder.com/150x80?text=Union+Européenne" alt="Union Européenne" class="partner-logo">
+                                <h5>Union Européenne</h5>
+                                <p>Collaboration dans le cadre du programme "Innovation Agricole pour l'Afrique" visant à soutenir 50 000 petits producteurs.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4">
+                            <div class="partner-card">
+                                <span class="partner-type">Institutionnel</span>
+                                <img src="https://via.placeholder.com/150x80?text=USAID" alt="USAID" class="partner-logo">
+                                <h5>USAID</h5>
+                                <p>Partenariat pour le développement de chaînes de valeur résilientes et la promotion de l'entreprenariat agricole des jeunes.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h3 class="mb-4 mt-5">Partenaires Techniques et de Recherche</h3>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="partner-card">
+                                <span class="partner-type">Recherche</span>
+                                <img src="https://via.placeholder.com/150x80?text=IITA" alt="IITA" class="partner-logo">
+                                <h5>Institut International d'Agriculture Tropicale (IITA)</h5>
+                                <p>Collaboration pour le développement et la diffusion de variétés améliorées de cultures vivrières en Afrique de l'Ouest.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4">
+                            <div class="partner-card">
+                                <span class="partner-type">Recherche</span>
+                                <img src="https://via.placeholder.com/150x80?text=CIRAD" alt="CIRAD" class="partner-logo">
+                                <h5>CIRAD</h5>
+                                <p>Partenariat de recherche sur l'agroécologie et la gestion durable des ressources naturelles en zones arides.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4">
+                            <div class="partner-card">
+                                <span class="partner-type">Recherche</span>
+                                <img src="https://via.placeholder.com/150x80?text=Wageningen" alt="Wageningen University" class="partner-logo">
+                                <h5>Université de Wageningen</h5>
+                                <p>Collaboration pour la recherche sur les systèmes alimentaires durables et la formation de jeunes chercheurs africains.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h3 class="mb-4 mt-5">Partenaires du Secteur Privé</h3>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="partner-card">
+                                <span class="partner-type">Privé</span>
+                                <img src="https://via.placeholder.com/150x80?text=AgriTech+Solutions" alt="AgriTech Solutions" class="partner-logo">
+                                <h5>AgriTech Solutions</h5>
+                                <p>Partenariat pour le déploiement de technologies d'irrigation intelligente et de capteurs agricoles dans 10 000 exploitations.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4">
+                            <div class="partner-card">
+                                <span class="partner-type">Privé</span>
+                                <img src="https://via.placeholder.com/150x80?text=Olam" alt="Olam" class="partner-logo">
+                                <h5>Olam International</h5>
+                                <p>Collaboration pour le développement de chaînes d'approvisionnement durables pour le cacao et le café en Afrique de l'Ouest.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4">
+                            <div class="partner-card">
+                                <span class="partner-type">Privé</span>
+                                <img src="https://via.placeholder.com/150x80?text=Mastercard" alt="Mastercard Foundation" class="partner-logo">
+                                <h5>Fondation Mastercard</h5>
+                                <p>Partenariat pour le programme "Young Africa Works" visant à créer des opportunités d'emploi pour les jeunes dans l'agriculture.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h3 class="mb-4 mt-5">Partenaires de la Société Civile</h3>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="partner-card">
+                                <span class="partner-type">Société Civile</span>
+                                <img src="https://via.placeholder.com/150x80?text=Oxfam" alt="Oxfam" class="partner-logo">
+                                <h5>Oxfam</h5>
+                                <p>Collaboration pour des programmes d'autonomisation des femmes rurales et de renforcement des organisations paysannes.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4">
+                            <div class="partner-card">
+                                <span class="partner-type">Société Civile</span>
+                                <img src="https://via.placeholder.com/150x80?text=Action+Aid" alt="Action Aid" class="partner-logo">
+                                <h5>Action Aid</h5>
+                                <p>Partenariat pour des initiatives de plaidoyer sur les droits fonciers des femmes et l'accès équitable aux ressources agricoles.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4">
+                            <div class="partner-card">
+                                <span class="partner-type">Société Civile</span>
+                                <img src="https://via.placeholder.com/150x80?text=ROPPA" alt="ROPPA" class="partner-logo">
+                                <h5>ROPPA</h5>
+                                <p>Collaboration avec le Réseau des Organisations Paysannes et de Producteurs de l'Afrique de l'Ouest pour le plaidoyer politique.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="stats-section">
+                <div class="container">
+                    <h2 class="text-center mb-5">L'Impact de Nos Partenariats</h2>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="stat-item">
+                                <div class="stat-number">45+</div>
+                                <div class="stat-label">Partenaires actifs</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="stat-item">
+                                <div class="stat-number">18</div>
+                                <div class="stat-label">Pays couverts</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="stat-item">
+                                <div class="stat-number">75M€</div>
+                                <div class="stat-label">Levés grâce aux partenariats</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="stat-item">
+                                <div class="stat-number">250K</div>
+                                <div class="stat-label">Agriculteurs touchés</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="container my-5">
+                <h2 class="text-center mb-5">Témoignages de Nos Partenaires</h2>
+                
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="testimonial-card d-flex">
+                            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Dr. Aminata Diallo" class="testimonial-photo">
+                            <div>
+                                <h5>Dr. Aminata Diallo</h5>
+                                <p class="text-muted">Directrice des Programmes, Banque Mondiale</p>
+                                <p>"Notre partenariat avec CAIDA a permis de démultiplier l'impact de nos investissements dans l'agriculture résiliente en Afrique de l'Ouest. Leur expertise technique et leur ancrage local sont inestimables."</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <div class="testimonial-card d-flex">
+                            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" class="testimonial-photo">
+                            <div>
+                                <h5>Jean-Luc N'Dri</h5>
+                                <p class="text-muted">CEO, AgriTech Solutions</p>
+                                <p>"Travailler avec CAIDA nous a permis d'adapter nos technologies au contexte africain et de les déployer à grande échelle. Leur réseau de terrain et leur crédibilité auprès des agriculteurs sont un atout précieux."</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row mt-4">
+                    <div class="col-md-6">
+                        <div class="testimonial-card d-flex">
+                            <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" class="testimonial-photo">
+                            <div>
+                                <h5>Fatoumata Bâ</h5>
+                                <p class="text-muted">Directrice Régionale, Oxfam Afrique de l'Ouest</p>
+                                <p>"CAIDA est un partenaire essentiel dans notre travail pour l'autonomisation des femmes rurales. Leur approche combine innovation technologique et inclusion sociale, ce qui est rare et précieux."</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <div class="testimonial-card d-flex">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" class="testimonial-photo">
+                            <div>
+                                <h5>Dr. Kwame Mensah</h5>
+                                <p class="text-muted">Directeur de Recherche, IITA</p>
+                                <p>"La collaboration avec CAIDA nous permet de transformer nos découvertes scientifiques en solutions concrètes pour les agriculteurs. Leur capacité à faire le lien entre la recherche et le terrain est exceptionnelle."</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-8 mx-auto text-center">
+                    <div class="card">
+                        <div class="card-body p-5">
+                            <h3 class="mb-4">Devenir Partenaire de CAIDA</h3>
+                            <p class="mb-4">Vous souhaitez collaborer avec nous pour transformer l'agriculture africaine ? Découvrez comment devenir partenaire de CAIDA.</p>
+                            <a href="/devenir-partenaire" class="btn-partner">En savoir plus</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer class="bg-dark text-white pt-5 pb-4 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>CAIDA</h5>
+                    <p>Centre Africain pour l'Innovation et le Développement Agricole</p>
+                    <p>Transforming African Agriculture through Innovation</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>Contact</h5>
+                    <p><i class="fa fa-map-marker"></i> Rue 123, Dakar, Sénégal</p>
+                    <p><i class="fa fa-phone"></i> +221 33 123 45 67</p>
+                    <p><i class="fa fa-envelope"></i> contact@caida.org</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>Suivez-nous</h5>
+                    <div class="social-links">
+                        <a href="#" class="text-white mr-3"><i class="fa fa-facebook"></i></a>
+                        <a href="#" class="text-white mr-3"><i class="fa fa-twitter"></i></a>
+                        <a href="#" class="text-white mr-3"><i class="fa fa-linkedin"></i></a>
+                        <a href="#" class="text-white"><i class="fa fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="bg-white">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <p>&copy; 2023 CAIDA. Tous droits réservés.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        $(document).ready(function(){
+            // Gestion de la barre de recherche
+            $('.wb-search-btn').click(function(){
+                $('.hide-element').toggleClass('hide-element');
+            });
+            
+            $('.btn-hide-form').click(function(){
+                $('.search-bar-block').parent().addClass('hide-element');
+            });
+        });
+    </script>
+</body>
+</html>
