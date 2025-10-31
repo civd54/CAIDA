@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+   <meta charset="utf-8">
+    <title>Domaines d'Intervention - CAIDA</title>
+    <meta name="description"
+          content="Découvrez les principaux domaines d'intervention de CAIDA pour la transformation agricole en Afrique.">
+
+    <meta name="keywords" content="caida, domaines d'intervention, projets, agriculture intelligente, innovation, afrique">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="https://www.coraf.org/css/style.css">
+    <link rel="stylesheet" href="https://www.coraf.org/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i&display=swap" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="icon" href="https://via.placeholder.com/64" type="image/x-icon">
+    
+    <style>
+        .page-header {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1574943320219-553eb213f72d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
+            margin-bottom: 50px;
+        }
+        
+        .intervention-card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            margin-bottom: 30px;
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        .intervention-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .intervention-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            background-color: rgba(40, 167, 69, 0.1);
+            color: #28a745;
+            font-size: 32px;
+        }
+        
+        .stats-section {
+            background-color: #f8f9fa;
+            padding: 80px 0;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .stat-number {
+            font-size: 48px;
+            font-weight: bold;
+            color: #28a745;
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            font-size: 18px;
+            color: #6c757d;
+        }
+        
+        .approach-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 30px;
+        }
+        
+        .approach-number {
+            background-color: #28a745;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            flex-shrink: 0;
+            font-weight: bold;
+            font-size: 20px;
+        }
+        
+        .country-badge {
+            display: inline-block;
+            background-color: #e9ecef;
+            padding: 5px 15px;
+            border-radius: 20px;
+            margin: 5px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav id="nav-element" class="navbar general-nav navbar-expand-lg navbar-light bg-white">
+            <div class="container">
+                <a class="navbar-brand" href="/">
+                    <img src="https://via.placeholder.com/150x50?text=CAIDA+Logo" alt="logo-caida">
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse position-relative navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/">Accueil</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                À Propos
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="/mission-et-vision">Mission et vision</a>
+                                <a class="dropdown-item" href="/organisation">Organisation et gouvernance</a>
+                                <a class="dropdown-item" href="/centres-specialises">Centres spécialisés</a>
+                                <a class="dropdown-item" href="/partenaires">Partenaires</a>
+                                <a class="dropdown-item" href="/equipe">Notre équipe</a>
+                                <a class="dropdown-item" href="/ethique">Éthique & politique</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdownProjet" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Projets
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownProjet">
+                                <a class="dropdown-item active" href="/domaines-intervention">Domaines d'interventions</a>
+                                <a class="dropdown-item" href="/portfolio">Portefeuilles de projet</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownActualites" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Actualités
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownActualites">
+                                <a class="dropdown-item" href="/actualite">Actualités</a>
+                                <a class="dropdown-item" href="/espace-presse">Espace presse</a>
+                                <a class="dropdown-item" href="/evenement">Évènements</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownImpact" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Impact
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownImpact">
+                                <a class="dropdown-item" href="/resultat">Résultats</a>
+                                <a class="dropdown-item" href="/histoire-impact">Histoires d'impact</a>
+                                <a class="dropdown-item" href="/blog">Blog</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownRessources" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Ressources
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownRessources">
+                                <a class="dropdown-item" href="/ressources">Publications</a>
+                                <a class="dropdown-item" href="/centres-de-connaissance">Centres de connaissance</a>
+                                <a class="dropdown-item" href="/directives-de-marque">Directive de marque</a>
+                                <a class="dropdown-item" href="/reglement-lignes-directrices">Règlements et lignes directives</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownOpportunités" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Opportunités
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownOpportunités">
+                                <a class="dropdown-item" href="/carrieres">Carrières</a>
+                                <a class="dropdown-item" href="/passation-marche">Passation de marchés</a>
+                            </div>
+                        </li>
+
+                        <button id="" class="btn wb-search-btn">
+                            <i class="fa fa-search" aria-hidden="true"></i>
+                        </button>
+                    </ul>
+                    <div class="hide-element">
+                        <div class="search-bar-block d-flex align-items-center ">
+                            <button class="btn-hide-form ">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots" viewBox="0 0 16 16">
+                                    <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
+                                </svg>
+                            </button>
+                            <form action="/homesearch" class="mb-0 d-flex align-items-center">
+                                <input type="search" name="search-input" id="search" class="form-control mr-2" placeholder="Recherche" required>
+                                <button type="submit" class="btn btn-success btn-search"> <i class="fa fa-search" aria-hidden="true"></i></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    
+    <div class="content-page">
+        <div class="page-header text-center">
+            <div class="container">
+                <h1>Domaines d'Intervention</h1>
+                <p class="lead">Nos axes stratégiques pour transformer l'agriculture africaine</p>
+            </div>
+        </div>
+        
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-md-4">
+                    <div class="card intervention-card">
+                        <div class="card-body text-center p-4">
+                            <div class="intervention-icon">
+                                <i class="fa fa-microchip"></i>
+                            </div>
+                            <h3 class="card-title">Agriculture de Précision</h3>
+                            <p class="card-text">Déploiement de technologies de précision (drones, capteurs, IoT) pour optimiser l'utilisation des ressources et augmenter la productivité.</p>
+                            <ul class="list-unstyled text-left mt-3">
+                                <li><i class="fa fa-check text-success mr-2"></i> Systèmes d'irrigation intelligente</li>
+                                <li><i class="fa fa-check text-success mr-2"></i> Cartographie des sols par drone</li>
+                                <li><i class="fa fa-check text-success mr-2"></i> Capteurs de surveillance des cultures</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="card intervention-card">
+                        <div class="card-body text-center p-4">
+                            <div class="intervention-icon">
+                                <i class="fa fa-mobile"></i>
+                            </div>
+                            <h3 class="card-title">Solutions Digitales</h3>
+                            <p class="card-text">Développement d'applications mobiles et de plateformes digitales pour connecter les agriculteurs aux marchés et aux informations.</p>
+                            <ul class="list-unstyled text-left mt-3">
+                                <li><i class="fa fa-check text-success mr-2"></i> Applications de conseil agricole</li>
+                                <li><i class="fa fa-check text-success mr-2"></i> Plateformes de commerce électronique</li>
+                                <li><i class="fa fa-check text-success mr-2"></i> Systèmes d'alerte précoce</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="card intervention-card">
+                        <div class="card-body text-center p-4">
+                            <div class="intervention-icon">
+                                <i class="fa fa-leaf"></i>
+                            </div>
+                            <h3 class="card-title">Agriculture Durable</h3>
+                            <p class="card-text">Promotion de pratiques agricoles respectueuses de l'environnement et résilientes face aux changements climatiques.</p>
+                            <ul class="list-unstyled text-left mt-3">
+                                <li><i class="fa fa-check text-success mr-2"></i> Agroécologie et agroforesterie</li>
+                                <li><i class="fa fa-check text-success mr-2"></i> Gestion intégrée des ressources</li>
+                                <li><i class="fa fa-check text-success mr-2"></i> Adaptation aux changements climatiques</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mb-5">
+                <div class="col-md-4">
+                    <div class="card intervention-card">
+                        <div class="card-body text-center p-4">
+                            <div class="intervention-icon">
+                                <i class="fa fa-graduation-cap"></i>
+                            </div>
+                            <h3 class="card-title">Formation et Capacitation</h3>
+                            <p class="card-text">Programmes de formation et de renforcement des capacités pour les agriculteurs, les techniciens et les entrepreneurs agricoles.</p>
+                            <ul class="list-unstyled text-left mt-3">
+                                <li><i class="fa fa-check text-success mr-2"></i> Écoles pratiques d'agriculture</li>
+                                <li><i class="fa fa-check text-success mr-2"></i> Formation aux nouvelles technologies</li>
+                                <li><i class="fa fa-check text-success mr-2"></i> Entrepreneuriat agricole</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="card intervention-card">
+                        <div class="card-body text-center p-4">
+                            <div class="intervention-icon">
+                                <i class="fa fa-flask"></i>
+                            </div>
+                            <h3 class="card-title">Innovation et Recherche</h3>
+                            <p class="card-text">Recherche appliquée et développement de solutions innovantes adaptées aux défis spécifiques de l'agriculture africaine.</p>
+                            <ul class="list-unstyled text-left mt-3">
+                                <li><i class="fa fa-check text-success mr-2"></i> Variétés résistantes aux stress</li>
+                                <li><i class="fa fa-check text-success mr-2"></i> Biopesticides et biofertilisants</li>
+                                <li><i class="fa fa-check text-success mr-2"></i> Technologies post-récolte</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="card intervention-card">
+                        <div class="card-body text-center p-4">
+                            <div class="intervention-icon">
+                                <i class="fa fa-exchange"></i>
+                            </div>
+                            <h3 class="card-title">Chaînes de Valeur</h3>
+                            <p class="card-text">Renforcement des chaînes de valeur agricoles pour améliorer l'accès aux marchés et augmenter la valeur ajoutée.</p>
+                            <ul class="list-unstyled text-left mt-3">
+                                <li><i class="fa fa-check text-success mr-2"></i> Transformation des produits</li>
+                                <li><i class="fa fa-check text-success mr-2"></i> Logistique et stockage</li>
+                                <li><i class="fa fa-check text-success mr-2"></i> Accès au financement</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="stats-section">
+            <div class="container">
+                <h2 class="text-center mb-5">Notre Impact en Chiffres</h2>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="stat-item">
+                            <div class="stat-number">18</div>
+                            <div class="stat-label">Pays d'intervention</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="stat-item">
+                            <div class="stat-number">250K</div>
+                            <div class="stat-label">Agriculteurs touchés</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="stat-item">
+                            <div class="stat-number">75</div>
+                            <div class="stat-label">Projets réalisés</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="stat-item">
+                            <div class="stat-number">45%</div>
+                            <div class="stat-label">Augmentation moyenne des rendements</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="container my-5">
+            <div class="row">
+                <div class="col-md-8 mx-auto">
+                    <h2 class="text-center mb-4">Notre Approche</h2>
+                    
+                    <div class="approach-item">
+                        <div class="approach-number">1</div>
+                        <div>
+                            <h4>Diagnostic Participatif</h4>
+                            <p>Nous commençons par une analyse approfondie des besoins et des contraintes spécifiques à chaque contexte, en impliquant directement les agriculteurs et les communautés.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="approach-item">
+                        <div class="approach-number">2</div>
+                        <div>
+                            <h4>Co-création de Solutions</h4>
+                            <p>Nous développons des solutions en partenariat avec les bénéficiaires, en intégrant leurs connaissances traditionnelles et en adaptant les innovations à leurs réalités.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="approach-item">
+                        <div class="approach-number">3</div>
+                        <div>
+                            <h4>Déploiement et Formation</h4>
+                            <p>Nous accompagnons le déploiement des solutions avec des programmes de formation et de renforcement des capacités pour assurer leur appropriation durable.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="approach-item">
+                        <div class="approach-number">4</div>
+                        <div>
+                            <h4>Suivi et Évaluation</h4>
+                            <p>Nous mesurons rigoureusement l'impact de nos interventions et ajustons nos approches en fonction des résultats et des retours des bénéficiaires.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="bg-light py-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 mx-auto text-center">
+                        <h2 class="mb-4">Pays d'Intervention</h2>
+                        <p class="mb-4">CAIDA intervient actuellement dans 18 pays africains, avec des programmes adaptés aux spécificités de chaque région.</p>
+                        
+                        <div class="mb-4">
+                            <span class="country-badge">Sénégal</span>
+                            <span class="country-badge">Côte d'Ivoire</span>
+                            <span class="country-badge">Mali</span>
+                            <span class="country-badge">Burkina Faso</span>
+                            <span class="country-badge">Ghana</span>
+                            <span class="country-badge">Nigeria</span>
+                            <span class="country-badge">Bénin</span>
+                            <span class="country-badge">Togo</span>
+                            <span class="country-badge">Niger</span>
+                            <span class="country-badge">Cameroun</span>
+                            <span class="country-badge">République Démocratique du Congo</span>
+                            <span class="country-badge">Kenya</span>
+                            <span class="country-badge">Tanzanie</span>
+                            <span class="country-badge">Ouganda</span>
+                            <span class="country-badge">Rwanda</span>
+                            <span class="country-badge">Éthiopie</span>
+                            <span class="country-badge">Zambie</span>
+                            <span class="country-badge">Malawi</span>
+                        </div>
+                        
+                        <a href="/portfolio" class="btn btn-success btn-lg">Voir nos projets par pays</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer class="bg-dark text-white pt-5 pb-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>CAIDA</h5>
+                    <p>Centre Africain pour l'Innovation et le Développement Agricole</p>
+                    <p>Transforming African Agriculture through Innovation</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>Contact</h5>
+                    <p><i class="fa fa-map-marker"></i> Rue 123, Dakar, Sénégal</p>
+                    <p><i class="fa fa-phone"></i> +221 33 123 45 67</p>
+                    <p><i class="fa fa-envelope"></i> contact@caida.org</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>Suivez-nous</h5>
+                    <div class="social-links">
+                        <a href="#" class="text-white mr-3"><i class="fa fa-facebook"></i></a>
+                        <a href="#" class="text-white mr-3"><i class="fa fa-twitter"></i></a>
+                        <a href="#" class="text-white mr-3"><i class="fa fa-linkedin"></i></a>
+                        <a href="#" class="text-white"><i class="fa fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="bg-white">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <p>&copy; 2023 CAIDA. Tous droits réservés.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        $(document).ready(function(){
+            // Gestion de la barre de recherche
+            $('.wb-search-btn').click(function(){
+                $('.hide-element').toggleClass('hide-element');
+            });
+            
+            $('.btn-hide-form').click(function(){
+                $('.search-bar-block').parent().addClass('hide-element');
+            });
+        });
+    </script>
+</body>
+</html>
