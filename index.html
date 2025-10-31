@@ -1,1302 +1,651 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>CAIDA — Centre Africain d'Innovation pour le Développement Agricole</title>
-  <meta name="description" content="CAIDA — Innovation, formation et accompagnement pour une agriculture africaine durable." />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAIDA - Centre Africain d'Innovation pour le Développement Agricole</title>
+    <style>
+        /* Variables CSS */
+        :root {
+            --primary-color: #2e7d32;
+            --secondary-color: #4caf50;
+            --accent-color: #8bc34a;
+            --dark-color: #1b5e20;
+            --light-color: #f1f8e9;
+            --text-color: #333;
+            --white: #ffffff;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
 
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
+        /* Reset et styles de base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-color);
+        }
 
-  <!-- Palette CAIDA et styles améliorés -->
-  <style>
-    :root{
-      --caida-vert-fonce: #2F6B2D;
-      --caida-vert-clair: #6BB24A;
-      --caida-orange: #E57C23;
-      --caida-bleu: #38B6FF;
-      --caida-blanc: #FFFFFF;
-      --caida-gris-fond: #F8F9F7;
-      --caida-texte: #24332a;
-    }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
 
-    * {
-      box-sizing: border-box;
-    }
+        ul {
+            list-style: none;
+        }
 
-    html, body {
-      height: 100%;
-      scroll-behavior: smooth;
-    }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
 
-    body {
-      font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
-      background: var(--caida-blanc);
-      color: var(--caida-texte);
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: var(--primary-color);
+            color: var(--white);
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+        }
 
-    /* Header amélioré */
-    header {
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(47, 107, 45, 0.08);
-      transition: all 0.3s ease;
-    }
+        .btn:hover {
+            background-color: var(--dark-color);
+            transform: translateY(-2px);
+        }
 
-    header.scrolled {
-      box-shadow: 0 4px 20px rgba(15, 23, 42, 0.08);
-    }
+        section {
+            padding: 80px 0;
+        }
 
-    .nav-link {
-      position: relative;
-      padding: 0.5rem 0.2rem;
-      transition: color 0.2s ease;
-      font-weight: 500;
-    }
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--dark-color);
+            position: relative;
+        }
 
-    .nav-link::after {
-      content: "";
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      bottom: -4px;
-      width: 0;
-      height: 2px;
-      border-radius: 2px;
-      background: linear-gradient(90deg, var(--caida-orange) 0%, var(--caida-bleu) 100%);
-      transition: width 0.3s cubic-bezier(0.2, 0.9, 0.3, 1);
-      opacity: 0;
-    }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--accent-color);
+        }
 
-    .nav-link:hover::after,
-    .nav-link:focus::after {
-      width: 80%;
-      opacity: 1;
-    }
+        /* Header */
+        header {
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
 
-    /* Boutons améliorés */
-    .btn-primary {
-      background: var(--caida-vert-fonce);
-      color: var(--caida-blanc);
-      transition: all 0.3s ease;
-      box-shadow: 0 6px 18px rgba(47, 107, 45, 0.15);
-      font-weight: 500;
-      position: relative;
-      overflow: hidden;
-    }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
 
-    .btn-primary:hover { 
-      transform: translateY(-3px); 
-      background: var(--caida-vert-clair); 
-      box-shadow: 0 10px 25px rgba(47, 107, 45, 0.2); 
-    }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
 
-    .btn-primary::after {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 5px;
-      height: 5px;
-      background: rgba(255, 255, 255, 0.5);
-      opacity: 0;
-      border-radius: 100%;
-      transform: scale(1, 1) translate(-50%);
-      transform-origin: 50% 50%;
-    }
+        .nav-links {
+            display: flex;
+        }
 
-    .btn-primary:focus:not(:active)::after {
-      animation: ripple 1s ease-out;
-    }
+        .nav-links li {
+            margin-left: 30px;
+        }
 
-    @keyframes ripple {
-      0% {
-        transform: scale(0, 0);
-        opacity: 0.5;
-      }
-      100% {
-        transform: scale(20, 20);
-        opacity: 0;
-      }
-    }
+        .nav-links a {
+            color: var(--text-color);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
 
-    .btn-accent {
-      background: transparent;
-      border: 2px solid var(--caida-orange);
-      color: var(--caida-orange);
-      transition: all 0.3s ease;
-      font-weight: 500;
-    }
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
 
-    .btn-accent:hover { 
-      background: var(--caida-orange); 
-      color: white; 
-      transform: translateY(-2px); 
-      box-shadow: 0 6px 15px rgba(229, 124, 35, 0.2);
-    }
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
 
-    /* Hero amélioré avec animations */
-    .hero {
-      position: relative;
-      width: 100%;
-      height: 100vh;
-      min-height: 600px;
-      overflow: hidden;
-    }
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1625246333195-78d9c38ad449?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: var(--white);
+            text-align: center;
+            padding: 180px 0 100px;
+            margin-top: 70px;
+        }
 
-    .hero-carousel {
-      position: relative;
-      height: 100%;
-      width: 100%;
-    }
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
 
-    .slide {
-      position: absolute;
-      inset: 0;
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      opacity: 0;
-      transform: scale(1.05);
-      transition: opacity 1.2s ease, transform 1.2s ease;
-    }
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
 
-    .slide.active {
-      opacity: 1;
-      transform: scale(1);
-    }
+        /* About Section */
+        .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 40px;
+        }
 
-    .overlay {
-      position: absolute;
-      inset: 0;
-      mix-blend-mode: multiply;
-      opacity: 0.45;
-    }
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+        }
 
-    .overlay-vert {
-      background: linear-gradient(120deg, rgba(47,107,45,0.85), rgba(107,178,74,0.65));
-    }
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
 
-    .overlay-orange {
-      background: linear-gradient(120deg, rgba(229,124,35,0.85), rgba(229,124,35,0.6));
-    }
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
 
-    .overlay-bleu {
-      background: linear-gradient(120deg, rgba(56,182,255,0.85), rgba(56,182,255,0.55));
-    }
+        /* Missions Section */
+        .missions {
+            background-color: var(--white);
+        }
 
-    .overlay-gradient {
-      background: linear-gradient(120deg, rgba(47,107,45,0.75), rgba(56,182,255,0.65));
-    }
+        .mission-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
 
-    .hero-content {
-      position: absolute;
-      top: 50%;
-      left: 8%;
-      transform: translateY(-50%);
-      color: white;
-      max-width: 620px;
-      z-index: 2;
-      animation: fadeInUp 1s ease forwards;
-    }
+        .mission-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+        }
 
-    .hero-content h2 {
-      font-size: 3rem;
-      line-height: 1.2;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-      text-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    }
+        .mission-card:hover {
+            transform: translateY(-10px);
+        }
 
-    .hero-content .sub {
-      font-size: 1.1rem;
-      font-weight: 500;
-      opacity: 0.9;
-      margin-bottom: 0.5rem;
-    }
+        .mission-card i {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
 
-    .hero-content .lead {
-      font-size: 1.15rem;
-      font-weight: 400;
-      margin-top: 1rem;
-      opacity: 0.95;
-      max-width: 90%;
-    }
+        .mission-card h3 {
+            margin-bottom: 15px;
+            color: var(--dark-color);
+        }
 
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+        /* Domains Section */
+        .domains-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
 
-    .carousel-controls {
-      position: absolute;
-      bottom: 30px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      z-index: 10;
-    }
+        .domain-item {
+            background-color: var(--white);
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
 
-    .carousel-controls button {
-      background: rgba(255,255,255,0.9);
-      border: none;
-      border-radius: 10px;
-      padding: 8px 12px;
-      cursor: pointer;
-      font-size: 24px;
-      color: var(--caida-vert-fonce);
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
+        .domain-item:hover {
+            transform: translateY(-5px);
+        }
 
-    .carousel-controls button:hover {
-      background: var(--caida-orange);
-      color: white;
-      transform: scale(1.05);
-    }
+        .domain-item i {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
 
-    .dots {
-      display: flex;
-      gap: 8px;
-    }
+        .domain-item h3 {
+            margin-bottom: 15px;
+            color: var(--dark-color);
+        }
 
-    .dots button {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.6);
-      border: none;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
+        /* Contact Section */
+        .contact {
+            background-color: var(--white);
+        }
 
-    .dots button.active {
-      background: white;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-      transform: scale(1.2);
-    }
+        .contact-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
 
-    /* Sections améliorées */
-    .section {
-      padding: 80px 0;
-    }
+        .contact-info {
+            flex: 1;
+            min-width: 300px;
+        }
 
-    .section-title {
-      font-size: 2.5rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-      color: var(--caida-vert-fonce);
-      position: relative;
-      display: inline-block;
-    }
+        .contact-info h3 {
+            margin-bottom: 20px;
+            color: var(--dark-color);
+        }
 
-    .section-title::after {
-      content: '';
-      position: absolute;
-      bottom: -8px;
-      left: 0;
-      width: 60px;
-      height: 4px;
-      background: linear-gradient(90deg, var(--caida-orange), var(--caida-bleu));
-      border-radius: 2px;
-    }
+        .contact-info p {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
 
-    .section-subtitle {
-      font-size: 1.1rem;
-      color: #6b766e;
-      margin-bottom: 2rem;
-      max-width: 700px;
-    }
+        .contact-info i {
+            margin-right: 10px;
+            color: var(--primary-color);
+        }
 
-    /* Cards améliorées */
-    .card {
-      background: white;
-      border-radius: 16px;
-      box-shadow: 0 10px 30px rgba(15,23,42,0.08);
-      border: 1px solid rgba(15,23,42,0.03);
-      overflow: hidden;
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      position: relative;
-    }
+        .contact-form {
+            flex: 1;
+            min-width: 300px;
+        }
 
-    .card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 20px 40px rgba(15,23,42,0.12);
-    }
+        .form-group {
+            margin-bottom: 20px;
+        }
 
-    .card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 5px;
-      background: linear-gradient(90deg, var(--caida-vert-clair), var(--caida-orange), var(--caida-bleu));
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.4s ease;
-    }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
 
-    .card:hover::before {
-      transform: scaleX(1);
-    }
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: inherit;
+        }
 
-    /* Animations de scroll */
-    .reveal {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: all 0.8s cubic-bezier(0.215, 0.61, 0.355, 1);
-    }
+        .form-group textarea {
+            height: 150px;
+            resize: vertical;
+        }
 
-    .reveal.show {
-      opacity: 1;
-      transform: translateY(0);
-    }
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: var(--white);
+            padding: 50px 0 20px;
+        }
 
-    .reveal-left {
-      opacity: 0;
-      transform: translateX(-30px);
-      transition: all 0.8s cubic-bezier(0.215, 0.61, 0.355, 1);
-    }
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
 
-    .reveal-left.show {
-      opacity: 1;
-      transform: translateX(0);
-    }
+        .footer-column {
+            flex: 1;
+            min-width: 200px;
+        }
 
-    .reveal-right {
-      opacity: 0;
-      transform: translateX(30px);
-      transition: all 0.8s cubic-bezier(0.215, 0.61, 0.355, 1);
-    }
+        .footer-column h3 {
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
 
-    .reveal-right.show {
-      opacity: 1;
-      transform: translateX(0);
-    }
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--accent-color);
+        }
 
-    /* Stats améliorées */
-    .stat {
-      background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(255,255,255,0.9));
-      border-radius: 12px;
-      padding: 1.2rem 1.5rem;
-      border: 1px solid rgba(47,107,45,0.08);
-      box-shadow: 0 5px 15px rgba(0,0,0,0.03);
-      transition: all 0.3s ease;
-    }
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
 
-    .stat:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-    }
+        .footer-column ul li a:hover {
+            color: var(--accent-color);
+        }
 
-    /* Footer amélioré */
-    footer {
-      border-top: 1px solid rgba(47,107,45,0.08);
-      background: var(--caida-gris-fond);
-    }
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
 
-    /* Responsive design amélioré */
-    @media (max-width: 1200px) {
-      .hero-content h2 {
-        font-size: 2.5rem;
-      }
-    }
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            transition: all 0.3s ease;
+        }
 
-    @media (max-width: 992px) {
-      .hero {
-        min-height: 500px;
-      }
-      
-      .hero-content {
-        left: 5%;
-        top: 50%;
-        transform: translateY(-50%);
-        max-width: 90%;
-      }
-      
-      .hero-content h2 {
-        font-size: 2.2rem;
-      }
-      
-      .hero-content .lead {
-        font-size: 1rem;
-      }
-      
-      .section {
-        padding: 60px 0;
-      }
-      
-      .section-title {
-        font-size: 2rem;
-      }
-    }
+        .social-links a:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-3px);
+        }
 
-    @media (max-width: 768px) {
-      .hero {
-        height: 70vh;
-        min-height: 450px;
-      }
-      
-      .hero-content {
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        text-align: center;
-        max-width: 95%;
-      }
-      
-      .hero-content h2 {
-        font-size: 1.8rem;
-        line-height: 1.3;
-      }
-      
-      .hero-content .sub {
-        font-size: 1rem;
-      }
-      
-      .hero-content .lead {
-        font-size: 0.95rem;
-        max-width: 100%;
-      }
-      
-      .carousel-controls {
-        bottom: 20px;
-      }
-      
-      .carousel-controls button {
-        padding: 6px 10px;
-        font-size: 20px;
-      }
-      
-      .section {
-        padding: 50px 0;
-      }
-      
-      .section-title {
-        font-size: 1.8rem;
-      }
-    }
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
 
-    @media (max-width: 640px) {
-      .hero {
-        height: 60vh;
-        min-height: 400px;
-      }
-      
-      .hero-content h2 {
-        font-size: 1.6rem;
-      }
-      
-      .section-title {
-        font-size: 1.6rem;
-      }
-    }
+        /* Responsive */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
 
-    /* Animation de pulse pour les éléments importants */
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-      100% { transform: scale(1); }
-    }
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background-color: var(--white);
+                flex-direction: column;
+                align-items: center;
+                padding-top: 50px;
+                transition: left 0.3s ease;
+            }
 
-    .pulse {
-      animation: pulse 2s infinite;
-    }
+            .nav-links.active {
+                left: 0;
+            }
 
-    /* Loading bar pour le header */
-    .loading-bar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      height: 3px;
-      background: linear-gradient(90deg, var(--caida-vert-clair), var(--caida-orange), var(--caida-bleu));
-      width: 0%;
-      z-index: 100;
-      transition: width 0.3s ease;
-    }
-  </style>
+            .nav-links li {
+                margin: 15px 0;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            section {
+                padding: 60px 0;
+            }
+        }
+    </style>
+    <!-- Font Awesome pour les icônes -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-
-  <!-- Loading bar -->
-  <div class="loading-bar" id="loadingBar"></div>
-
-  <!-- Header amélioré -->
-  <header class="fixed inset-x-0 top-0 z-50" id="mainHeader">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-16 md:h-20">
-        <a href="#" class="flex items-center gap-3">
-          <div class="bg-white p-2 rounded-lg shadow-sm transition-all duration-300 hover:shadow-md">
-            <img src="1.png" alt="Logo CAIDA" class="w-28 h-auto md:w-32" />
-          </div>
-        </a>
-
-        <!-- Desktop nav -->
-        <nav class="hidden md:flex items-center gap-6 text-sm font-medium">
-          <a class="nav-link" href="#home">Accueil i</a>
-          <a class="nav-link" href="#about">À propos</a>
-          <a class="nav-link" href="#projects">Projets</a>
-          <a class="nav-link" href="#services">Services</a>
-          <a class="nav-link" href="#news">Actualités</a>
-          <a class="nav-link" href="#contact">Contact</a>
-          <a href="#contact" class="ml-2 px-5 py-2.5 rounded-md btn-primary text-sm">Nous contacter</a>
-        </nav>
-
-        <!-- Mobile button -->
-        <div class="md:hidden">
-          <button id="mobileBtn" class="p-2 rounded-md hover:bg-gray-100 transition-colors duration-200">
-            <svg id="mobileOpen" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-slate-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-            </svg>
-            <svg id="mobileClose" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-slate-700 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-            </svg>
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Mobile panel amélioré -->
-    <div id="mobilePanel" class="md:hidden hidden bg-white border-t shadow-lg">
-      <div class="px-4 py-3 space-y-1">
-        <a class="block py-3 px-2 rounded-md hover:bg-gray-50 transition-colors duration-200" href="#home">Accueil</a>
-        <a class="block py-3 px-2 rounded-md hover:bg-gray-50 transition-colors duration-200" href="#about">À propos</a>
-        <a class="block py-3 px-2 rounded-md hover:bg-gray-50 transition-colors duration-200" href="#projects">Projets</a>
-        <a class="block py-3 px-2 rounded-md hover:bg-gray-50 transition-colors duration-200" href="#services">Services</a>
-        <a class="block py-3 px-2 rounded-md hover:bg-gray-50 transition-colors duration-200" href="#news">Actualités</a>
-        <a class="block py-3 px-2 rounded-md hover:bg-gray-50 transition-colors duration-200" href="#contact">Contact</a>
-        <div class="pt-2">
-          <a href="#contact" class="block w-full text-center py-3 rounded-md btn-primary">Nous contacter</a>
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <!-- HERO amélioré -->
-  <section id="home" class="hero">
-    <div class="hero-carousel" id="heroCarousel" aria-roledescription="carousel">
-      <div class="slide active" data-index="0" style="background-image: url('2.png');">
-        <div class="overlay overlay-vert"></div>
-        <div class="hero-content">
-          <h2>Innover pour nourrir l'Afrique</h2>
-          <p class="sub">Innovating to feed Africa</p>
-          <p class="lead">Encourager l'innovation pour augmenter la productivité et la sécurité alimentaire.</p>
-        </div>
-      </div>
-
-      <div class="slide" data-index="1" style="background-image: url('3.png');">
-        <div class="overlay overlay-orange"></div>
-        <div class="hero-content">
-          <h2>Former les acteurs du changement</h2>
-          <p class="sub">Training agents of change</p>
-          <p class="lead">Programmes pratiques pour renforcer les capacités locales.</p>
-        </div>
-      </div>
-
-      <div class="slide" data-index="2" style="background-image: url('4.png');">
-        <div class="overlay overlay-bleu"></div>
-        <div class="hero-content">
-          <h2>Transformer les produits, transformer les vies</h2>
-          <p class="sub">Transforming products, transforming lives</p>
-          <p class="lead">Unités de transformation et accompagnement pour les coopératives.</p>
-        </div>
-      </div>
-
-      <div class="slide" data-index="3" style="background-image: url('5.png');">
-        <div class="overlay overlay-gradient"></div>
-        <div class="hero-content">
-          <h2>Cultiver durablement pour demain</h2>
-          <p class="sub">Cultivating sustainably for tomorrow</p>
-          <p class="lead">Solutions climato-intelligentes pour des récoltes résilientes.</p>
-        </div>
-      </div>
-
-      <div class="carousel-controls">
-        <button id="prevBtn" aria-label="Précédent">‹</button>
-        <div class="dots" id="carouselDots"></div>
-        <button id="nextBtn" aria-label="Suivant">›</button>
-      </div>
-    </div>
-  </section>
-
-  <main class="pt-16 md:pt-24">
-    <!-- Section Accueil améliorée -->
-    <section id="home-content" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
-      <div class="grid lg:grid-cols-2 gap-10 items-center">
-        <!-- Carte principale -->
-        <div class="card p-6 md:p-8 reveal" data-reveal>
-          <h2 class="text-2xl md:text-3xl font-bold mb-4" style="color: var(--caida-vert-fonce);">Centre Africain d'Innovation pour le Développement Agricole</h2>
-          <p class="text-slate-700 mb-6">CAIDA accompagne les agriculteurs, les coopératives et les MPME dans la transformation, l'accès aux marchés et la résilience climatique — via formation, recherche-action et projets intégrés.</p>
-          <p class="text-slate-700 mb-6">Elle travaille pour les communautés locales, les entreprises, les organisations, les institutions de recherches et les gouvernements africains POUR UNE agriculture plus innovante, durable et plus résiliente.</p>
-
-          <div class="flex flex-wrap gap-3 mb-8">
-            <a href="#projects" class="btn-primary px-5 py-3 rounded-md inline-flex items-center gap-2">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4"/>
-              </svg>
-              Nos projets
-            </a>
-            <a href="#contact" class="btn-accent px-5 py-3 rounded-md inline-flex items-center gap-2">
-              Nous contacter
-            </a>
-            <a href="#resources" class="px-4 py-3 rounded-md cta-underline text-sm inline-flex items-center gap-2" style="color:var(--caida-bleu)">
-              Publications & ressources
-            </a>
-          </div>
-
-          <!-- Stats améliorées -->
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            <div class="stat text-center">
-              <div class="text-2xl md:text-3xl font-bold" style="color:var(--caida-vert-fonce)"><span class="count" data-target="120">0</span>+</div>
-              <div class="text-sm text-slate-500">Agriculteurs formés</div>
-            </div>
-            <div class="stat text-center">
-              <div class="text-2xl md:text-3xl font-bold" style="color:var(--caida-orange)"><span class="count" data-target="35">0</span></div>
-              <div class="text-sm text-slate-500">Projets réalisés</div>
-            </div>
-            <div class="stat text-center">
-              <div class="text-2xl md:text-3xl font-bold" style="color:var(--caida-bleu)"><span class="count" data-target="18">0</span></div>
-              <div class="text-sm text-slate-500">Partenaires</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Image avec forme décorative -->
-        <div class="relative reveal-right" data-reveal>
-          <div class="rounded-2xl overflow-hidden card h-72 sm:h-96 lg:h-full">
-            <img src="8.png" alt="Terrain agricole" class="w-full h-full object-cover transform transition-transform duration-700 hover:scale-110" />
-            <!-- Bande de couleur -->
-            <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/60 to-transparent">
-              <div class="bg-white/90 px-4 py-2 rounded-md text-sm shadow-md inline-block">Projets terrains — Innovations</div>
-            </div>
-          </div>
-
-          <!-- Forme décorative -->
-          <div class="absolute -bottom-6 -right-6 w-40 h-40 rounded-full opacity-20" style="background: var(--caida-vert-clair);"></div>
-          <div class="absolute -top-6 -left-6 w-24 h-24 rounded-full opacity-20" style="background: var(--caida-orange);"></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- À propos amélioré -->
-    <section id="about" class="bg-gray-50 py-16 md:py-24">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="section-title reveal" data-reveal>À propos de CAIDA</h2>
-        <p class="section-subtitle reveal" data-reveal>Le Centre Africain d'Innovation pour le Développement Agricole (CAIDA) promeut des solutions durables et inclusives pour améliorer les chaînes de valeur agricoles en Afrique.</p>
-
-        <div class="grid lg:grid-cols-2 gap-10 items-center mt-12">
-          <div class="reveal-left" data-reveal>
-            <p class="text-slate-700 mb-6">Notre mission est de favoriser l'innovation et l'inclusion dans le secteur agricole à travers une approche intégrée qui combine recherche, formation et mise en œuvre sur le terrain.</p>
-            <ul class="space-y-4 mb-8">
-              <li class="flex items-start">
-                <svg class="h-6 w-6 mr-3 mt-0.5 flex-shrink-0" style="color: var(--caida-vert-fonce);" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                </svg>
-                <span>Formation & renforcement des capacités</span>
-              </li>
-              <li class="flex items-start">
-                <svg class="h-6 w-6 mr-3 mt-0.5 flex-shrink-0" style="color: var(--caida-vert-fonce);" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                </svg>
-                <span>Appui technique & transformation</span>
-              </li>
-              <li class="flex items-start">
-                <svg class="h-6 w-6 mr-3 mt-0.5 flex-shrink-0" style="color: var(--caida-vert-fonce);" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                </svg>
-                <span>Recherche-action et diffusion de technologies</span>
-              </li>
-              <li class="flex items-start">
-                <svg class="h-6 w-6 mr-3 mt-0.5 flex-shrink-0" style="color: var(--caida-vert-fonce);" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                </svg>
-                <span>Facilitation d'investissements et partenariats</span>
-              </li>
-            </ul>
-            <div class="flex flex-wrap gap-3">
-              <a href="#services" class="btn-primary px-5 py-3 rounded-md">Nos services</a>
-              <a href="#projects" class="px-5 py-3 rounded-md border-2 transition-all duration-300 hover:shadow-md" style="border-color: var(--caida-orange); color: var(--caida-orange);">Voir les projets</a>
-            </div>
-          </div>
-
-          <div class="grid grid-cols-2 gap-5 reveal-right" data-reveal>
-            <div class="card p-5 text-center">
-              <div class="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4" style="background: rgba(47,107,45,0.1);">
-                <svg class="w-6 h-6" style="color: var(--caida-vert-fonce);" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                </svg>
-              </div>
-              <h4 class="font-semibold mb-2" style="color:var(--caida-vert-fonce)">Mission</h4>
-              <p class="text-sm text-slate-600">Favoriser l'innovation et l'inclusion dans le secteur agricole.</p>
-            </div>
-            <div class="card p-5 text-center">
-              <div class="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4" style="background: rgba(56,182,255,0.1);">
-                <svg class="w-6 h-6" style="color: var(--caida-bleu);" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                </svg>
-              </div>
-              <h4 class="font-semibold mb-2" style="color:var(--caida-bleu)">Vision</h4>
-              <p class="text-sm text-slate-600">Une agriculture africaine résiliente et compétitive.</p>
-            </div>
-            <div class="card p-5 text-center">
-              <div class="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4" style="background: rgba(229,124,35,0.1);">
-                <svg class="w-6 h-6" style="color: var(--caida-orange);" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                </svg>
-              </div>
-              <h4 class="font-semibold mb-2" style="color:var(--caida-orange)">Valeurs</h4>
-              <p class="text-sm text-slate-600">Partenariat, innovation, durabilité.</p>
-            </div>
-            <div class="card p-5 text-center">
-              <div class="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4" style="background: rgba(107,178,74,0.1);">
-                <svg class="w-6 h-6" style="color: var(--caida-vert-clair);" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                </svg>
-              </div>
-              <h4 class="font-semibold mb-2" style="color:var(--caida-vert-clair)">Zones</h4>
-              <p class="text-sm text-slate-600">Interventions en Afrique de l'Ouest et projets pilotes régionaux.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Projets améliorés -->
-    <section id="projects" class="py-16 md:py-24">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex flex-col md:flex-row md:items-center justify-between mb-12">
-          <h2 class="section-title reveal" data-reveal>Projets phares</h2>
-          <a href="#projects" class="nav-link text-lg font-medium mt-2 md:mt-0 reveal" data-reveal style="color:var(--caida-bleu)">Voir tous les projets →</a>
-        </div>
-
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <!-- Carte projet 1 -->
-          <article class="card overflow-hidden reveal" data-reveal>
-            <div class="relative overflow-hidden">
-              <img src="6.png" alt="Unité de transformation rurale" class="w-full h-48 object-cover transition-transform duration-700 hover:scale-110" />
-              <div class="absolute top-4 left-4 bg-white/90 px-3 py-1 rounded-md text-xs font-medium shadow-sm" style="color:var(--caida-vert-fonce)">Transformation</div>
-            </div>
-            <div class="p-6">
-              <h4 class="font-semibold text-lg mb-3">Unité de transformation rurale</h4>
-              <p class="text-slate-600 mb-4">Mise en place d'unités de transformation et formation des coopératives locales. Notre unité de transformation rurale est spécialisée dans la valorisation des produits agricoles à travers des procédés modernes et respectueux des normes de qualité.</p>
-              <div class="flex items-center justify-between">
-                <a class="text-sm font-medium cta-underline" style="color:var(--caida-orange)" href="#">En savoir plus →</a>
-                <span class="text-xs text-slate-400 bg-slate-100 px-2 py-1 rounded">2025</span>
-              </div>
-            </div>
-          </article>
-
-          <!-- Carte projet 2 -->
-          <article class="card overflow-hidden reveal" data-reveal>
-            <div class="relative overflow-hidden">
-              <img src="5.png" alt="Accès durable à l'eau" class="w-full h-48 object-cover transition-transform duration-700 hover:scale-110" />
-              <div class="absolute top-4 left-4 bg-white/90 px-3 py-1 rounded-md text-xs font-medium shadow-sm" style="color:var(--caida-bleu)">Irrigation</div>
-            </div>
-            <div class="p-6">
-              <h4 class="font-semibold text-lg mb-3">Accès durable à l'eau</h4>
-              <p class="text-slate-600 mb-4">Projets d'irrigation locale et réhabilitation des points d'eau. Optimiser l'utilisation de l'eau, renforcer la résilience des exploitations et contribuer à une agriculture plus efficace et respectueuse de l'environnement.</p>
-              <div class="flex items-center justify-between">
-                <a class="text-sm font-medium cta-underline" style="color:var(--caida-bleu)" href="#">En savoir plus →</a>
-                <span class="text-xs text-slate-400 bg-slate-100 px-2 py-1 rounded">2025</span>
-              </div>
-            </div>
-          </article>
-
-          <!-- Carte projet 3 -->
-          <article class="card overflow-hidden reveal" data-reveal>
-            <div class="relative overflow-hidden">
-              <img src="7.png" alt="Formation et entrepreneuriat rural" class="w-full h-48 object-cover transition-transform duration-700 hover:scale-110" />
-              <div class="absolute top-4 left-4 bg-white/90 px-3 py-1 rounded-md text-xs font-medium shadow-sm" style="color:var(--caida-vert-fonce)">Formation</div>
-            </div>
-            <div class="p-6">
-              <h4 class="font-semibold text-lg mb-3">Formation & entrepreneuriat rural</h4>
-              <p class="text-slate-600 mb-4">Sessions pratiques et mentorat pour jeunes entrepreneurs ruraux. Nos formations visent à renforcer les connaissances et les compétences des participants dans les domaines de la production agricole et de la gestion des ressources naturelles.</p>
-              <div class="flex items-center justify-between">
-                <a class="text-sm font-medium cta-underline" style="color:var(--caida-vert-fonce)" href="#">En savoir plus →</a>
-                <span class="text-xs text-slate-400 bg-slate-100 px-2 py-1 rounded">2024</span>
-              </div>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- Services améliorés -->
-    <section id="services" class="bg-gray-50 py-16 md:py-24">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="section-title text-center reveal" data-reveal>Nos services</h2>
-        <p class="section-subtitle text-center reveal" data-reveal>Formations, accompagnement technique, recherche-action et facilitation d'investissements.</p>
-
-        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
-          <div class="card p-6 text-center reveal" data-reveal>
-            <div class="inline-flex items-center justify-center w-14 h-14 rounded-full mx-auto mb-5" style="background:var(--caida-vert-fonce); color:white">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 1.343-3 3v4h6v-4c0-1.657-1.343-3-3-3z"/>
-              </svg>
-            </div>
-            <h4 class="font-semibold text-lg mb-3">Formation</h4>
-            <p class="text-slate-600">Coaching et apprentissage pratique sur le terrain pour renforcer les capacités locales.</p>
-          </div>
-
-          <div class="card p-6 text-center reveal" data-reveal>
-            <div class="inline-flex items-center justify-center w-14 h-14 rounded-full mx-auto mb-5" style="background:var(--caida-orange); color:white">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-              </svg>
-            </div>
-            <h4 class="font-semibold text-lg mb-3">Assistance technique</h4>
-            <p class="text-slate-600">Conseil en production et transformation pour améliorer les rendements et la qualité.</p>
-          </div>
-
-          <div class="card p-6 text-center reveal" data-reveal>
-            <div class="inline-flex items-center justify-center w-14 h-14 rounded-full mx-auto mb-5" style="background:var(--caida-bleu); color:white">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
-              </svg>
-            </div>
-            <h4 class="font-semibold text-lg mb-3">Recherche-action</h4>
-            <p class="text-slate-600">Pilotes et validation de technologies adaptées aux contextes locaux africains.</p>
-          </div>
-
-          <div class="card p-6 text-center reveal" data-reveal>
-            <div class="inline-flex items-center justify-center w-14 h-14 rounded-full mx-auto mb-5" style="background:var(--caida-vert-fonce); color:white">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h2l1 9h12l1-9h2"/>
-              </svg>
-            </div>
-            <h4 class="font-semibold text-lg mb-3">Accès aux marchés</h4>
-            <p class="text-slate-600">Structuration des filières et mise en relation d'acheteurs pour valoriser les productions.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Actualités améliorées -->
-    <section id="news" class="py-16 md:py-24">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex flex-col md:flex-row md:items-center justify-between mb-12">
-          <h2 class="section-title reveal" data-reveal>Actualités & événements</h2>
-          <a href="#news" class="nav-link text-lg font-medium mt-2 md:mt-0 reveal" data-reveal style="color:var(--caida-orange)">Voir toutes →</a>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-6">
-          <article class="card p-6 text-white reveal" data-reveal style="background-color: #E57C23;">
-            <div class="mb-4">
-              <span class="inline-block bg-white/20 px-3 py-1 rounded-full text-xs font-medium">Événement</span>
-            </div>
-            <h4 class="font-semibold text-lg mb-3">Atelier régional sur la transformation</h4>
-            <p class="mb-4 opacity-90">Réunion des acteurs pour harmoniser les approches post-récolte et améliorer la qualité des produits.</p>
-            <div class="text-sm opacity-80">12 septembre 2025</div>
-          </article>
-
-          <article class="card p-6 text-white reveal" data-reveal style="background-color:#38B6FF;">
-            <div class="mb-4">
-              <span class="inline-block bg-white/20 px-3 py-1 rounded-full text-xs font-medium">Publication</span>
-            </div>
-            <h4 class="font-semibold text-lg mb-3">Guide de résilience climatique</h4>
-            <p class="mb-4 opacity-90">Guide pratique pour renforcer la résilience climatique des exploitations agricoles familiales.</p>
-            <div class="text-sm opacity-80">03 avril 2025</div>
-          </article>
-
-          <article class="card p-6 text-white reveal" data-reveal style="background-color: #2F6B2D;">
-            <div class="mb-4">
-              <span class="inline-block bg-white/20 px-3 py-1 rounded-full text-xs font-medium">Partenariat</span>
-            </div>
-            <h4 class="font-semibold text-lg mb-3">Appel à partenariats 2026</h4>
-            <p class="mb-4 opacity-90">Nous cherchons partenaires pour co-financer des projets pilotes innovants dans 5 pays d'Afrique de l'Ouest.</p>
-            <div class="text-sm opacity-80">18 octobre 2025</div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- Partenaires amélioré -->
-    <section class="py-12 bg-gray-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h4 class="text-xl font-semibold text-center mb-10" style="color:var(--caida-vert-fonce)">Ils nous font confiance</h4>
-        <div class="flex flex-wrap items-center justify-center gap-10 md:gap-16">
-          <!-- Remplacez les src par les logos de vos partenaires -->
-          <div class="h-12 grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300">
-            <img src="" alt="Partenaire 1" class="h-full object-contain" />
-          </div>
-          <div class="h-12 grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300">
-            <img src="" alt="Partenaire 2" class="h-full object-contain" />
-          </div>
-          <div class="h-12 grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300">
-            <img src="" alt="Partenaire 3" class="h-full object-contain" />
-          </div>
-          <div class="h-12 grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300">
-            <img src="" alt="Partenaire 4" class="h-full object-contain" />
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Contact amélioré -->
-    <section id="contact" class="py-16 md:py-24 bg-gray-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid md:grid-cols-2 gap-10">
-          <div class="reveal-left" data-reveal>
-            <h2 class="section-title mb-6">Contactez CAIDA</h2>
-            <p class="text-slate-700 mb-6">Nous sommes à votre disposition pour répondre à toutes vos questions et discuter de collaborations potentielles.</p>
-            
-            <div class="space-y-4 mb-8">
-              <div class="flex items-start">
-                <svg class="h-6 w-6 mr-3 mt-1 flex-shrink-0" style="color: var(--caida-vert-fonce);" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                </svg>
-                <div>
-                  <h4 class="font-semibold">Adresse</h4>
-                  <p class="text-slate-600">NZUESSI, BO: 105<br>Yamoussoukro, Région des Lacs, Côte d'Ivoire</p>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">CAIDA</a>
+                <ul class="nav-links">
+                    <li><a href="#accueil">Accueil</a></li>
+                    <li><a href="#apropos">À propos</a></li>
+                    <li><a href="#missions">Missions</a></li>
+                    <li><a href="#domaines">Domaines</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <div class="menu-toggle">
+                    <i class="fas fa-bars"></i>
                 </div>
-              </div>
-              
-              <div class="flex items-start">
-                <svg class="h-6 w-6 mr-3 mt-1 flex-shrink-0" style="color: var(--caida-vert-fonce);" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
-                <div>
-                  <h4 class="font-semibold">Email</h4>
-                  <a href="mailto:caidaafrique@gmail.com" class="text-slate-600 hover:text-slate-800 transition-colors">caidaafrique@gmail.com</a>
-                </div>
-              </div>
-            </div>
-            
-            <div>
-              <h4 class="font-semibold mb-3">Nous contactons pour :</h4>
-              <ul class="grid grid-cols-2 gap-2">
-                <li class="flex items-center">
-                  <svg class="h-4 w-4 mr-2 flex-shrink-0" style="color: var(--caida-vert-fonce);" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                  </svg>
-                  <span class="text-sm text-slate-600">Formation</span>
-                </li>
-                <li class="flex items-center">
-                  <svg class="h-4 w-4 mr-2 flex-shrink-0" style="color: var(--caida-vert-fonce);" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                  </svg>
-                  <span class="text-sm text-slate-600">Partenariats</span>
-                </li>
-                <li class="flex items-center">
-                  <svg class="h-4 w-4 mr-2 flex-shrink-0" style="color: var(--caida-vert-fonce);" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                  </svg>
-                  <span class="text-sm text-slate-600">Propositions de projets</span>
-                </li>
-                <li class="flex items-center">
-                  <svg class="h-4 w-4 mr-2 flex-shrink-0" style="color: var(--caida-vert-fonce);" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                  </svg>
-                  <span class="text-sm text-slate-600">Assistance technique</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          <form action="mailto:caidaafrique@gmail.com" method="post" enctype="text/plain" class="bg-white p-6 rounded-xl card space-y-5 reveal-right" data-reveal>
-            <div>
-              <label class="block text-sm font-medium text-slate-700 mb-1">Votre nom</label>
-              <input type="text" name="name" required class="w-full border border-slate-200 rounded-lg px-4 py-3 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-opacity-50" style="focus:ring-color: var(--caida-vert-fonce);" />
-            </div>
-            <div>
-              <label class="block text-sm font-medium text-slate-700 mb-1">E-mail</label>
-              <input type="email" name="email" required class="w-full border border-slate-200 rounded-lg px-4 py-3 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-opacity-50" style="focus:ring-color: var(--caida-vert-fonce);" />
-            </div>
-            <div>
-              <label class="block text-sm font-medium text-slate-700 mb-1">Sujet</label>
-              <input name="subject" class="w-full border border-slate-200 rounded-lg px-4 py-3 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-opacity-50" style="focus:ring-color: var(--caida-vert-fonce);" />
-            </div>
-            <div>
-              <label class="block text-sm font-medium text-slate-700 mb-1">Message</label>
-              <textarea name="message" rows="5" required class="w-full border border-slate-200 rounded-lg px-4 py-3 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-opacity-50" style="focus:ring-color: var(--caida-vert-fonce);"></textarea>
-            </div>
-            <div class="text-right">
-              <button type="submit" class="btn-primary px-6 py-3 rounded-lg">Envoyer le message</button>
-            </div>
-          </form>
+            </nav>
         </div>
-      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="accueil">
+        <div class="container">
+            <h1>Centre Africain d'Innovation pour le Développement Agricole</h1>
+            <p>Promouvoir une transformation durable, résiliente et inclusive de l'agriculture africaine à travers la recherche, l'innovation, la formation et le transfert de technologies adaptées aux réalités locales.</p>
+            <a href="#contact" class="btn">Nous contacter</a>
+        </div>
     </section>
-  </main>
 
-  <!-- Footer amélioré -->
-  <footer class="bg-slate-800 text-white py-12">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid md:grid-cols-4 gap-8">
-        <div class="md:col-span-2">
-          <div class="flex items-center gap-3 mb-4">
-            <div class="bg-white p-2 rounded-lg">
-              <img src="1.png" alt="Logo CAIDA" class="w-24 h-auto" />
+    <!-- À propos Section -->
+    <section id="apropos">
+        <div class="container">
+            <h2 class="section-title">À propos de CAIDA</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Le Centre Africain d'Innovation pour le Développement Agricole (CAIDA) est une organisation à but non lucratif qui a pour but de promouvoir une transformation durable, résiliente et inclusive de l'agriculture africaine.</p>
+                    <p>Notre mission s'articule autour de la recherche, l'innovation, la formation et le transfert de technologies adaptées aux réalités locales pour relever les défis du secteur agricole en Afrique.</p>
+                    <p>Nous œuvrons pour un développement agricole qui respecte l'environnement, valorise les ressources locales et améliore les conditions de vie des communautés rurales.</p>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="CAIDA - Agriculture durable">
+                </div>
             </div>
-            <div>
-              <h3 class="text-xl font-bold">CAIDA</h3>
-              <p class="text-slate-300 text-sm">Centre Africain d'Innovation pour le Développement Agricole</p>
+        </div>
+    </section>
+
+    <!-- Missions Section -->
+    <section class="missions" id="missions">
+        <div class="container">
+            <h2 class="section-title">Nos Missions</h2>
+            <div class="mission-cards">
+                <div class="mission-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Renforcer la résilience face au changement climatique</h3>
+                    <p>Appuyer les acteurs agricoles dans la mise en œuvre de stratégies d'adaptation et d'atténuation des effets du changement climatique, à travers la diffusion de solutions intelligentes et basées sur la science.</p>
+                </div>
+                <div class="mission-card">
+                    <i class="fas fa-leaf"></i>
+                    <h3>Protéger la biodiversité et les écosystèmes</h3>
+                    <p>Contribuer à la conservation des ressources naturelles et de la biodiversité agricole en promouvant la restauration des terres, la valorisation des espèces locales et les pratiques agroécologiques.</p>
+                </div>
+                <div class="mission-card">
+                    <i class="fas fa-seedling"></i>
+                    <h3>Promouvoir une agriculture durable et innovante</h3>
+                    <p>Encourager l'adoption de pratiques agricoles écologiquement responsables, productives et adaptées aux contextes locaux, afin d'assurer la sécurité alimentaire et le développement rural durable.</p>
+                </div>
+                <div class="mission-card">
+                    <i class="fas fa-wind"></i>
+                    <h3>Réduire les émissions de gaz à effet de serre</h3>
+                    <p>Encourager la transition vers des systèmes de production à faibles émissions de carbone à travers la mesure, la gestion et la réduction des GES dans le secteur agricole et rural.</p>
+                </div>
+                <div class="mission-card">
+                    <i class="fas fa-lightbulb"></i>
+                    <h3>Stimuler l'innovation et la recherche appliquée</h3>
+                    <p>Soutenir la conception et la diffusion de technologies, de méthodes et de modèles innovants pour accélérer la transformation durable du secteur agricole en Afrique.</p>
+                </div>
+                <div class="mission-card">
+                    <i class="fas fa-tint"></i>
+                    <h3>Optimiser la gestion des ressources en eau et en énergie</h3>
+                    <p>Faciliter l'accès à des technologies efficientes et renouvelables pour une meilleure utilisation des ressources naturelles, tout en soutenant la productivité et l'autonomie énergétique du monde rural.</p>
+                </div>
             </div>
-          </div>
-          <p class="text-slate-300 mb-4 max-w-md">Promouvoir l'innovation agricole en Afrique à travers la formation, la recherche et l'accompagnement des acteurs du secteur.</p>
-          <div class="flex gap-4">
-            <a href="#" class="text-slate-300 hover:text-white transition-colors">
-              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
-            </a>
-            <a href="#" class="text-slate-300 hover:text-white transition-colors">
-              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z"/></svg>
-            </a>
-            <a href="#" class="text-slate-300 hover:text-white transition-colors">
-              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.042-3.441.219-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.402.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.357-.629-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24.009 12.017 24.009c6.624 0 11.99-5.367 11.99-11.988C24.007 5.367 18.641.001.012.017z"/></svg>
-            </a>
-          </div>
         </div>
-        
-        <div>
-          <h4 class="font-semibold text-lg mb-4">Liens rapides</h4>
-          <ul class="space-y-2">
-            <li><a href="#home" class="text-slate-300 hover:text-white transition-colors">Accueil</a></li>
-            <li><a href="#about" class="text-slate-300 hover:text-white transition-colors">À propos</a></li>
-            <li><a href="#projects" class="text-slate-300 hover:text-white transition-colors">Projets</a></li>
-            <li><a href="#services" class="text-slate-300 hover:text-white transition-colors">Services</a></li>
-            <li><a href="#news" class="text-slate-300 hover:text-white transition-colors">Actualités</a></li>
-          </ul>
+    </section>
+
+    <!-- Domaines d'intervention Section -->
+    <section id="domaines">
+        <div class="container">
+            <h2 class="section-title">Domaines d'intervention</h2>
+            <div class="domains-grid">
+                <div class="domain-item">
+                    <i class="fas fa-tractor"></i>
+                    <h3>Agriculture durable</h3>
+                    <p>Promotion de pratiques agricoles respectueuses de l'environnement, économiquement viables et socialement équitables.</p>
+                </div>
+                <div class="domain-item">
+                    <i class="fas fa-cloud-sun"></i>
+                    <h3>Changement climatique</h3>
+                    <p>Développement et diffusion de solutions pour aider les communautés agricoles à s'adapter aux effets du changement climatique.</p>
+                </div>
+                <div class="domain-item">
+                    <i class="fas fa-water"></i>
+                    <h3>Eau et énergie</h3>
+                    <p>Gestion intégrée des ressources en eau et accès à des sources d'énergie propres et renouvelables.</p>
+                </div>
+                <div class="domain-item">
+                    <i class="fas fa-tree"></i>
+                    <h3>Biodiversité et environnement</h3>
+                    <p>Conservation de la biodiversité agricole et naturelle, essentielle au maintien de l'équilibre des écosystèmes.</p>
+                </div>
+                <div class="domain-item">
+                    <i class="fas fa-industry"></i>
+                    <h3>Gestion des gaz à effet de serre</h3>
+                    <p>Suivi, quantification et réduction des émissions de GES dans les activités agricoles et rurales.</p>
+                </div>
+            </div>
         </div>
-        
-        <div>
-          <h4 class="font-semibold text-lg mb-4">Contact</h4>
-          <address class="not-italic text-slate-300">
-            <p class="mb-2">NZUESSI, BO: 105</p>
-            <p class="mb-2">Yamoussoukro, Côte d'Ivoire</p>
-            <p class="mb-2"><a href="mailto:caidaafrique@gmail.com" class="hover:text-white transition-colors">caidaafrique@gmail.com</a></p>
-          </address>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="section-title">Contactez-nous</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Nos coordonnées</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> NZUESSI BO: 105 Yamoussoukro, Yamoussoukro, Région des lacs (Côte d'Ivoire)</p>
+                    <p><i class="fas fa-envelope"></i> caidaafrique@gmail.com</p>
+                    <p><i class="fas fa-phone"></i> +225 XX XX XX XX</p>
+                    
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Nom complet</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Adresse e-mail</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Sujet</label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Envoyer le message</button>
+                    </form>
+                </div>
+            </div>
         </div>
-      </div>
-      
-      <div class="border-t border-slate-700 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
-        <p>© 2023 CAIDA — Centre Africain d'Innovation pour le Développement Agricole. Tous droits réservés.</p>
-        <div class="flex gap-4 mt-4 md:mt-0">
-          <a href="#" class="text-slate-300 hover:text-white transition-colors text-sm">Mentions légales</a>
-          <a href="#" class="text-slate-300 hover:text-white transition-colors text-sm">Politique de confidentialité</a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>CAIDA</h3>
+                    <p>Centre Africain d'Innovation pour le Développement Agricole - Promouvoir une agriculture durable, résiliente et inclusive en Afrique.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Liens rapides</h3>
+                    <ul>
+                        <li><a href="#accueil">Accueil</a></li>
+                        <li><a href="#apropos">À propos</a></li>
+                        <li><a href="#missions">Missions</a></li>
+                        <li><a href="#domaines">Domaines</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> NZUESSI BO: 105 Yamoussoukro, Côte d'Ivoire</li>
+                        <li><i class="fas fa-envelope"></i> caidaafrique@gmail.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 CAIDA - Tous droits réservés</p>
+            </div>
         </div>
-      </div>
-    </div>
-  </footer>
+    </footer>
 
-  <!-- Scripts améliorés -->
-  <script>
-    // Header scroll effect
-    const header = document.getElementById('mainHeader');
-    const loadingBar = document.getElementById('loadingBar');
-    
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 50) {
-        header.classList.add('scrolled');
-      } else {
-        header.classList.remove('scrolled');
-      }
-      
-      // Loading bar effect
-      const winHeight = window.innerHeight;
-      const docHeight = document.documentElement.scrollHeight;
-      const scrollTop = window.pageYOffset;
-      const scrollPercent = (scrollTop / (docHeight - winHeight)) * 100;
-      loadingBar.style.width = scrollPercent + '%';
-    });
+    <script>
+        // Menu mobile
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
 
-    // Mobile panel toggle
-    const mobileBtn = document.getElementById('mobileBtn');
-    const mobilePanel = document.getElementById('mobilePanel');
-    const mobileOpen = document.getElementById('mobileOpen');
-    const mobileClose = document.getElementById('mobileClose');
-    
-    if (mobileBtn) {
-      mobileBtn.addEventListener('click', () => {
-        mobilePanel.classList.toggle('hidden');
-        mobileOpen.classList.toggle('hidden');
-        mobileClose.classList.toggle('hidden');
-        document.body.style.overflow = mobilePanel.classList.contains('hidden') ? 'auto' : 'hidden';
-      });
-    }
+        // Fermer le menu mobile en cliquant sur un lien
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.querySelector('.nav-links').classList.remove('active');
+            });
+        });
 
-    // Close mobile menu when clicking on a link
-    document.querySelectorAll('#mobilePanel a').forEach(link => {
-      link.addEventListener('click', () => {
-        mobilePanel.classList.add('hidden');
-        mobileOpen.classList.remove('hidden');
-        mobileClose.classList.add('hidden');
-        document.body.style.overflow = 'auto';
-      });
-    });
+        // Gestion du formulaire de contact
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Merci pour votre message! Nous vous répondrons dans les plus brefs délais.');
+            this.reset();
+        });
 
-    // Reveal on scroll avec délais progressifs
-    const reveals = document.querySelectorAll('[data-reveal]');
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          setTimeout(() => {
-            entry.target.classList.add('show');
-          }, parseInt(entry.target.dataset.delay) || 0);
-          revealObserver.unobserve(entry.target);
-        }
-      });
-    }, { 
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    });
-    
-    reveals.forEach((el, index) => {
-      el.dataset.delay = index * 100;
-      revealObserver.observe(el);
-    });
-
-    // Counters animation améliorée
-    const counters = document.querySelectorAll('.count');
-    const counterObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const counter = entry.target;
-          const target = +counter.getAttribute('data-target');
-          const duration = 2000; // 2 seconds
-          const step = target / (duration / 16); // 60fps
-          let current = 0;
-          
-          const updateCounter = () => {
-            current += step;
-            if (current < target) {
-              counter.innerText = Math.ceil(current);
-              requestAnimationFrame(updateCounter);
+        // Animation au défilement
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.boxShadow = '0 4px 10px rgba(0, 0, 0, 0.1)';
             } else {
-              counter.innerText = target;
+                header.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
             }
-          };
-          
-          updateCounter();
-          counterObserver.unobserve(counter);
-        }
-      });
-    }, { threshold: 0.5 });
-    
-    counters.forEach(counter => {
-      counterObserver.observe(counter);
-    });
-
-    // HERO Carousel amélioré
-    (function(){
-      const slides = Array.from(document.querySelectorAll('.hero-carousel .slide'));
-      const prev = document.getElementById('prevBtn');
-      const next = document.getElementById('nextBtn');
-      const dotsWrap = document.getElementById('carouselDots');
-      let idx = 0;
-      const len = slides.length;
-      let auto = null;
-
-      // Create dots
-      slides.forEach((s, i) => {
-        const d = document.createElement('button');
-        d.className = i === 0 ? 'active' : '';
-        d.setAttribute('aria-label', 'Aller à la diapositive ' + (i + 1));
-        d.addEventListener('click', () => { go(i); reset(); });
-        dotsWrap.appendChild(d);
-      });
-
-      function show(i) {
-        slides.forEach((s, j) => {
-          s.classList.toggle('active', j === i);
         });
-        // Update dots
-        Array.from(dotsWrap.children).forEach((b, bi) => b.classList.toggle('active', bi === i));
-      }
-
-      function go(i) { 
-        idx = (i + len) % len; 
-        show(idx); 
-      }
-      
-      function nextSlide() { 
-        go(idx + 1); 
-      }
-      
-      function prevSlide() { 
-        go(idx - 1); 
-      }
-      
-      function reset() { 
-        clearInterval(auto); 
-        auto = setInterval(nextSlide, 6000); 
-      }
-
-      // Prev/next buttons
-      if (prev) prev.addEventListener('click', () => { prevSlide(); reset(); });
-      if (next) next.addEventListener('click', () => { nextSlide(); reset(); });
-
-      // Pause on hover
-      const carousel = document.getElementById('heroCarousel');
-      if (carousel) {
-        carousel.addEventListener('mouseenter', () => clearInterval(auto));
-        carousel.addEventListener('mouseleave', () => auto = setInterval(nextSlide, 6000));
-      }
-
-      // Start
-      show(0);
-      auto = setInterval(nextSlide, 6000);
-    })();
-
-    // Smooth scrolling for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          const headerHeight = document.getElementById('mainHeader').offsetHeight;
-          const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerHeight;
-          
-          window.scrollTo({
-            top: targetPosition,
-            behavior: 'smooth'
-          });
-        }
-      });
-    });
-
-    // Form validation améliorée
-    const contactForm = document.querySelector('form[action="mailto:caidaafrique@gmail.com"]');
-    if (contactForm) {
-      contactForm.addEventListener('submit', function(e) {
-        let valid = true;
-        const required = this.querySelectorAll('[required]');
-        
-        required.forEach(field => {
-          if (!field.value.trim()) {
-            valid = false;
-            field.style.borderColor = '#f87171'; // red-400
-          } else {
-            field.style.borderColor = '#e2e8f0'; // slate-200
-          }
-        });
-        
-        if (!valid) {
-          e.preventDefault();
-          // Add error message
-          if (!this.querySelector('.form-error')) {
-            const errorMsg = document.createElement('p');
-            errorMsg.className = 'form-error text-red-500 text-sm mt-2';
-            errorMsg.textContent = 'Veuillez remplir tous les champs obligatoires.';
-            this.appendChild(errorMsg);
-          }
-        }
-      });
-    }
-  </script>
+    </script>
 </body>
 </html>
