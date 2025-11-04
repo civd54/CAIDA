@@ -107,6 +107,15 @@
                 width: 100%;
             }
         }
+
+        .intervention-card{
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+            text-align: center;
+            width: 100%;
+            height: 100%;
+        }
     </style>
 </head>
 
@@ -140,7 +149,7 @@
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownProjet" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Projets
+                                Programmes
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownProjet">
                                 <a class="dropdown-item" href="domaines.html">Domaines d'interventions</a>
@@ -279,7 +288,7 @@
                     <div class="col-50">
                         <div class="content-map">
                             <div class="map-placeholder">
-                                <i class="fa fa-globe" aria-hidden="true"></i>
+                                <img src="images/Africa_(orthographic_projection).svg.png" alt="">
                                 <h3>Présence en Afrique</h3>
                                 <p>CAIDA opère dans 18 pays africains avec plus de 50 projets en cours</p>
                             </div>
@@ -343,7 +352,60 @@
                     </div>
                 </div>
             </div>
-            <a href="domaines.html" class="btn btn-decouvrir" style="text-align: center;"><span>Voir plus</span></a>
+            
+             <div class="row mb-5">
+                <div class="col-md-4">
+                    <div class="card intervention-card">
+                        <div class="card-body text-center p-4">
+                            <div>
+                               <img src="images/img4.jpg" class="card-img-top" alt="">
+                            </div>
+                            <h3 class="card-title">Biodiversité et environnement</h3>
+                            <p class="card-text">Le CAIDA œuvre pour la conservation de la biodiversité agricole et naturelle, essentielle au maintien de l’équilibre des écosystèmes. Les initiatives favorisent la valorisation des ressources locales, la restauration des terres dégradées et la protection des habitats naturels. Ce domaine encourage aussi les pratiques agroécologiques et la sensibilisation environnementale.</p>
+                            <ul class="list-unstyled text-left mt-3">
+                                <li><i class="fa fa-check text-success mr-2"></i> Protéger les habitats naturels</li>
+                                <li><i class="fa fa-check text-success mr-2"></i> Lutter contre la pollution</li>
+                                <li><i class="fa fa-check text-success mr-2"></i> Soutenir les espèces locales</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="card intervention-card">
+                        <div class="card-body text-center p-4">
+                            <div>
+                                <img src="images/img5.jpg" class="card-img-top" alt="">
+                            </div>
+                            <h3 class="card-title">Gestion des gaz à effet de serre (GES)</h3>
+                            <p class="card-text">Le centre appuie le suivi, la quantification et la réduction des émissions de GES dans les activités agricoles et rurales. Il promeut des technologies et pratiques bas carbone, comme la valorisation des déchets organiques ou l’agroforesterie. Ces actions contribuent à la transition vers une agriculture plus propre et compatible avec les engagements climatiques mondiaux.</p>
+                            <ul class="list-unstyled text-left mt-3">
+                                <li><i class="fa fa-check text-success mr-2"></i> Promouvoir les transports propres</li>
+                                <li><i class="fa fa-check text-success mr-2"></i> Améliorer l'éfficacité énergétique</li>
+                                <li><i class="fa fa-check text-success mr-2"></i> Planter des arbres</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="card intervention-card">
+                        <div class="card-body text-center p-4">
+                            <div>
+                               <img src="images/img3.jpg" class="card-img-top" alt="">
+                            </div>
+                            <h3 class="card-title">Chaînes de Valeur</h3>
+                            <p class="card-text">Renforcement des chaînes de valeur agricoles pour améliorer l'accès aux marchés et augmenter la valeur ajoutée.</p>
+                            <ul class="list-unstyled text-left mt-3">
+                                <li><i class="fa fa-check text-success mr-2"></i> Transformation des produits</li>
+                                <li><i class="fa fa-check text-success mr-2"></i> Logistique et stockage</li>
+                                <li><i class="fa fa-check text-success mr-2"></i> Accès au financement</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
                     </div>
                     
                 </section>
@@ -397,7 +459,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4">
-                    <h5>CAIDA</h5>
+                     <a class="navbar-brand" href="index.html">
+                    <img src="logo_CAIDA.png" alt="logo-caida">
+                </a>
                     <p>Centre Africain pour l'Innovation et le Développement Agricole</p>
                     <p>Transforming African Agriculture through Innovation</p>
                 </div>
