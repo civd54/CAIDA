@@ -1,131 +1,417 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-   <meta charset="utf-8">
-    <title>Publications - CAIDA</title>
-    <meta name="description"
-          content="Accédez aux publications, rapports et ressources de CAIDA sur l'innovation agricole en Afrique.">
-
-    <meta name="keywords" content="caida, publications, rapports, études, ressources, innovation agricole">
-    <meta name="robots" content="index, follow">
+    <meta charset="UTF-8">
+    <title>Actualités - CAIDA</title>
+    <meta name="description" content="Découvrez les dernières actualités et innovations en agriculture durable">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <link rel="stylesheet" href="https://www.coraf.org/css/style.css">
-    <link rel="stylesheet" href="https://www.coraf.org/css/bootstrap.min.css">
+    
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="icon" href="https://via.placeholder.com/64" type="image/x-icon">
     
     <style>
+        :root {
+            --primary-color: #28a745;
+            --primary-dark: #218838;
+            --secondary-color: #155724;
+            --light-bg: #f8f9fa;
+            --dark-bg: #343a40;
+            --text-dark: #212529;
+            --text-light: #6c757d;
+            --card-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            --card-hover-shadow: 0 15px 40px rgba(0,0,0,0.15);
+            --transition: all 0.4s ease;
+        }
+        
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            overflow-x: hidden;
+            background-color: #f5f5f5;
+        }
+        
+        /* Header & Navigation */
+        .general-nav {
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: var(--transition);
+            padding: 15px 0;
+            background-color: white;
+        }
+        
+        .navbar-brand img {
+            height: 50px;
+            transition: var(--transition);
+        }
+        
+        .nav-link {
+            font-weight: 600;
+            position: relative;
+            transition: var(--transition);
+            margin: 0 5px;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+        
+        /* Page Header */
         .page-header {
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1464226184884-fa280b87c399?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
             background-size: cover;
             background-position: center;
             color: white;
             padding: 100px 0;
-            margin-bottom: 50px;
+            text-align: center;
         }
         
-        .resource-card {
-            border: none;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-            margin-bottom: 30px;
+        .page-header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .page-header .lead {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* Actualités Section */
+        .actualites-section {
+            padding: 80px 0;
+        }
+        
+        .actualite-card {
+            box-shadow: var(--card-shadow);
+            border-radius: 15px;
+            transition: var(--transition);
             height: 100%;
+            border: none;
+            overflow: hidden;
+            margin-bottom: 30px;
+            background: white;
         }
         
-        .resource-card:hover {
+        .actualite-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--card-hover-shadow);
+        }
+        
+        .actualite-image {
+            height: 250px;
+            overflow: hidden;
+        }
+        
+        .actualite-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .actualite-card:hover .actualite-image img {
+            transform: scale(1.05);
+        }
+        
+        .actualite-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--primary-color);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .actualite-content {
+            padding: 25px;
+        }
+        
+        .actualite-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--secondary-color);
+        }
+        
+        .actualite-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+        
+        .actualite-meta i {
+            margin-right: 5px;
+            color: var(--primary-color);
+        }
+        
+        .actualite-description {
+            color: var(--text-light);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .btn-lire-plus {
+            background-color: transparent;
+            color: var(--primary-color);
+            padding: 8px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            display: inline-block;
+            transition: var(--transition);
+            font-weight: 600;
+            border: 2px solid var(--primary-color);
+        }
+        
+        .btn-lire-plus:hover {
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(40, 167, 69, 0.4);
+        }
+        
+        /* Modal de lecture */
+        .modal-content {
+            border-radius: 15px;
+            border: none;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .modal-header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            border-radius: 15px 15px 0 0;
+            border-bottom: none;
+        }
+        
+        .modal-title {
+            font-weight: 700;
+        }
+        
+        .close {
+            color: white;
+            opacity: 0.8;
+        }
+        
+        .close:hover {
+            color: white;
+            opacity: 1;
+        }
+        
+        .modal-image {
+            height: 300px;
+            overflow: hidden;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .modal-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .modal-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+        
+        .modal-body {
+            padding: 30px;
+        }
+        
+        /* Interface Admin */
+        .admin-section {
+            padding: 80px 0;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: var(--card-shadow);
+            margin: 40px 0;
+        }
+        
+        .admin-header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px 15px 0 0;
+            margin-bottom: 30px;
+        }
+        
+        .admin-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .admin-subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .table {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .table thead th {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            font-weight: 600;
+        }
+        
+        .table tbody tr:hover {
+            background-color: rgba(40, 167, 69, 0.05);
+        }
+        
+        .btn-admin {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            padding: 8px 20px;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        
+        .btn-admin:hover {
+            background-color: var(--primary-dark);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .btn-edit {
+            background-color: #ffc107;
+            color: #212529;
+        }
+        
+        .btn-delete {
+            background-color: #dc3545;
+            color: white;
+        }
+        
+        /* Section Titles */
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 50px;
+            position: relative;
+            text-align: center;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background: var(--primary-color);
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark-bg);
+            padding: 70px 0 30px;
+            margin-top: 80px;
+        }
+        
+        footer h5 {
+            font-weight: 700;
+            margin-bottom: 25px;
+            position: relative;
+        }
+        
+        footer h5::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 3px;
+            background: var(--primary-color);
+            bottom: -10px;
+            left: 0;
+        }
+        
+        footer p {
+            margin-bottom: 15px;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            transition: var(--transition);
+            margin-right: 10px;
+        }
+        
+        .social-links a:hover {
+            background: var(--primary-color);
             transform: translateY(-5px);
         }
         
-        .resource-icon {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 20px;
-            background-color: rgba(40, 167, 69, 0.1);
-            color: #28a745;
-            font-size: 24px;
-            flex-shrink: 0;
-        }
-        
-        .publication-card {
-            border-left: 5px solid #28a745;
-            border-radius: 5px;
-            padding: 20px;
-            margin-bottom: 20px;
-            background-color: #f8f9fa;
-        }
-        
-        .publication-type {
-            background-color: #28a745;
-            color: white;
-            padding: 3px 10px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: bold;
-            display: inline-block;
-            margin-bottom: 10px;
-        }
-        
-        .btn-download {
-            background-color: #28a745;
-            color: white;
-            padding: 8px 15px;
-            border-radius: 5px;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            transition: all 0.3s ease;
-        }
-        
-        .btn-download:hover {
-            background-color: #218838;
-            color: white;
-            text-decoration: none;
-        }
-        
-        .btn-download i {
-            margin-right: 5px;
-        }
-        
-        .knowledge-center {
-            background-color: #f8f9fa;
-            padding: 60px 0;
-        }
-        
-        .filter-buttons .btn {
-            margin-right: 10px;
-            margin-bottom: 10px;
-        }
-        
-        .resource-meta {
-            color: #6c757d;
-            font-size: 14px;
-        }
-        
-        .stats-number {
-            font-size: 36px;
-            font-weight: bold;
-            color: #28a745;
-            margin-bottom: 5px;
-        }
-        
-        .stats-label {
-            font-size: 16px;
-            color: #6c757d;
+        /* Responsive */
+        @media (max-width: 768px) {
+            .page-header {
+                padding: 80px 0;
+            }
+            
+            .page-header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .actualite-meta {
+                flex-direction: column;
+            }
+            
+            .actualite-meta > div {
+                margin-bottom: 10px;
+            }
         }
     </style>
 </head>
 
 <body>
     <header>
-        <nav id="nav-element" class="navbar general-nav navbar-expand-lg navbar-light bg-white">
+        <nav class="navbar general-nav navbar-expand-lg navbar-light bg-white fixed-top">
             <div class="container">
                 <a class="navbar-brand" href="index.html">
                     <img src="logo_CAIDA.png" alt="logo-caida">
@@ -133,7 +419,7 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse position-relative navbar-collapse" id="navbarNav">
+                <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
                             <a class="nav-link" href="index.html">Accueil</a>
@@ -144,10 +430,6 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="mv.html">Mission et vision</a>
-                                <!--<a class="dropdown-item" href="og.html">Organisation et gouvernance</a>-->
-                                <!--<a class="dropdown-item" href="/centres-specialises">Centres spécialisés</a>
-                                <a class="dropdown-item" href="/equipe">Notre équipe</a>
-                                <a class="dropdown-item" href="/ethique">Éthique & politique</a>-->
                                 <a class="dropdown-item" href="partenaires.html">Partenaires</a>
                             </div>
                         </li>
@@ -157,272 +439,253 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownProjet">
                                 <a class="dropdown-item" href="domaines.html">Domaines d'interventions</a>
-                                <!--<a class="dropdown-item" href="/portfolio">Portefeuilles de projet</a>-->
                             </div>
                         </li>
-                        <!--<li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownActualites" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Actualités
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdownActualites">
-                                <a class="dropdown-item" href="actualités.html">Actualités</a>
-                                <a class="dropdown-item" href="/espace-presse">Espace presse</a>
-                                <a class="dropdown-item" href="/evenement">Évènements</a>
-                            </div>
-                        </li>-->
-                       <!-- <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownImpact" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Impact
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdownImpact">
-                                <a class="dropdown-item" href="/resultat">Résultats</a>
-                                <a class="dropdown-item" href="/histoire-impact">Histoires d'impact</a>
-                                <a class="dropdown-item" href="/blog">Blog</a>
-                            </div>
-                        </li>-->
+                        <li class="nav-item">
+                            <a class="nav-link active" href="actualites.html">Actualités</a>
+                        </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdownRessources" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownRessources" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Ressources
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownRessources">
-                                <a class="dropdown-item active" href="publication.html">Publications</a>
-                                <!--<a class="dropdown-item" href="/centres-de-connaissance">Centres de connaissance</a>
-                                <a class="dropdown-item" href="/directives-de-marque">Directive de marque</a>
-                                <a class="dropdown-item" href="/reglement-lignes-directrices">Règlements et lignes directives</a>-->
+                                <a class="dropdown-item" href="publication.html">Publications</a>
                             </div>
                         </li>
-                        <!--<li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownOpportunités" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Opportunités
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdownOpportunités">
-                                <a class="dropdown-item" href="carrière.html">Carrières</a>
-                                <a class="dropdown-item" href="/passation-marche">Passation de marchés</a>
-                            </div>
-                        </li>-->
-
-                        <button id="" class="btn wb-search-btn">
-                            <i class="fa fa-search" aria-hidden="true"></i>
-                        </button>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" id="admin-toggle">Admin</a>
+                        </li>
                     </ul>
-                    <div class="hide-element">
-                        <div class="search-bar-block d-flex align-items-center ">
-                            <button class="btn-hide-form ">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots" viewBox="0 0 16 16">
-                                    <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
-                                </svg>
-                            </button>
-                            <form action="/homesearch" class="mb-0 d-flex align-items-center">
-                                <input type="search" name="search-input" id="search" class="form-control mr-2" placeholder="Recherche" required>
-                                <button type="submit" class="btn btn-success btn-search"> <i class="fa fa-search" aria-hidden="true"></i></button>
-                            </form>
-                        </div>
-                    </div>
                 </div>
             </div>
         </nav>
     </header>
     
-    <!--<div class="content-page">
-        <div class="page-header text-center">
+    <div class="content-page" style="padding-top: 80px;">
+        <!-- En-tête de page -->
+        <div class="page-header">
             <div class="container">
-                <h1>Publications</h1>
-                <p class="lead">Accédez à nos rapports, études et ressources sur l'innovation agricole</p>
+                <h1>Actualités CAIDA</h1>
+                <p class="lead">Restez informé des dernières innovations et développements en agriculture durable</p>
             </div>
         </div>
         
-        <div class="container">
-            <div class="row mb-5">
-                <div class="col-12">
-                    <div class="filter-buttons mb-4">
-                        <button class="btn btn-outline-success active" data-filter="all">Toutes les publications</button>
-                        <button class="btn btn-outline-success" data-filter="rapports">Rapports annuels</button>
-                        <button class="btn btn-outline-success" data-filter="etudes">Études de cas</button>
-                        <button class="btn btn-outline-success" data-filter="guides">Guides pratiques</button>
-                        <button class="btn btn-outline-success" data-filter="articles">Articles scientifiques</button>
-                    </div>
-                    
-                    <div class="publication-list">
-                        <div class="publication-card" data-category="rapports">
-                            <span class="publication-type">Rapport annuel</span>
-                            <h3>Rapport d'activités 2022</h3>
-                            <p class="resource-meta">Publié le 15 mars 2023 | 48 pages</p>
-                            <p>Ce rapport présente les activités et réalisations de CAIDA en 2022, incluant les projets menés, les partenariats établis et l'impact mesuré sur les communautés agricoles.</p>
-                            <a href="#" class="btn-download"><i class="fa fa-download"></i> Télécharger le rapport (PDF, 5.2 MB)</a>
-                        </div>
-                        
-                        <div class="publication-card" data-category="etudes">
-                            <span class="publication-type">Étude de cas</span>
-                            <h3>Impact des technologies d'irrigation intelligente au Sahel</h3>
-                            <p class="resource-meta">Publié le 10 février 2023 | 32 pages</p>
-                            <p>Cette étude analyse l'impact des systèmes d'irrigation intelligente déployés par CAIDA dans cinq pays du Sahel, avec des données sur l'économie d'eau, l'augmentation des rendements et les retours sur investissement.</p>
-                            <a href="#" class="btn-download"><i class="fa fa-download"></i> Télécharger l'étude (PDF, 3.8 MB)</a>
-                        </div>
-                        
-                        <div class="publication-card" data-category="guides">
-                            <span class="publication-type">Guide pratique</span>
-                            <h3>Guide de l'agriculture de précision pour les petits producteurs</h3>
-                            <p class="resource-meta">Publié le 25 janvier 2023 | 64 pages</p>
-                            <p>Un guide complet qui présente les principes de l'agriculture de précision adaptés aux contextes des petits producteurs africains, avec des conseils pratiques et des études de cas.</p>
-                            <a href="#" class="btn-download"><i class="fa fa-download"></i> Télécharger le guide (PDF, 7.1 MB)</a>
-                        </div>
-                        
-                        <div class="publication-card" data-category="articles">
-                            <span class="publication-type">Article scientifique</span>
-                            <h3>Adoption des applications mobiles agricoles en Afrique de l'Ouest</h3>
-                            <p class="resource-meta">Publié le 15 décembre 2022 | 18 pages</p>
-                            <p>Cet article scientifique publié dans la revue "Agricultural Innovation" analyse les facteurs influençant l'adoption des applications mobiles agricoles par les producteurs ouest-africains.</p>
-                            <a href="#" class="btn-download"><i class="fa fa-download"></i> Télécharger l'article (PDF, 2.3 MB)</a>
-                        </div>
-                        
-                        <div class="publication-card" data-category="rapports">
-                            <span class="publication-type">Rapport technique</span>
-                            <h3>Évaluation des variétés résistantes à la sécheresse</h3>
-                            <p class="resource-meta">Publié le 30 novembre 2022 | 42 pages</p>
-                            <p>Rapport détaillant les résultats des essais menés sur 15 variétés de céréales résistantes à la sécheresse dans différentes zones agroécologiques d'Afrique de l'Ouest.</p>
-                            <a href="#" class="btn-download"><i class="fa fa-download"></i> Télécharger le rapport (PDF, 4.5 MB)</a>
-                        </div>
-                        
-                        <div class="publication-card" data-category="guides">
-                            <span class="publication-type">Guide pratique</span>
-                            <h3>Manuel de formation aux techniques agroécologiques</h3>
-                            <p class="resource-meta">Publié le 15 octobre 2022 | 86 pages</p>
-                            <p>Un manuel complet destiné aux formateurs agricoles, présentant les principes et techniques de l'agroécologie adaptés aux contextes africains.</p>
-                            <a href="#" class="btn-download"><i class="fa fa-download"></i> Télécharger le manuel (PDF, 9.8 MB)</a>
-                        </div>
-                    </div>
-                    
-                    <nav aria-label="Page navigation" class="mt-5">
-                        <ul class="pagination justify-content-center">
-                            <li class="page-item disabled">
-                                <a class="page-link" href="#" tabindex="-1">Précédent</a>
-                            </li>
-                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">Suivant</a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-        </div>
-        
-        <div class="knowledge-center">
+        <!-- Section Actualités Publiques -->
+        <section class="actualites-section" id="public-section">
             <div class="container">
-                <h2 class="text-center mb-5">Centres de Connaissance CAIDA</h2>
+                <h2 class="section-title">Nos Actualités</h2>
+                
                 <div class="row">
+                    <!-- Actualité 1 -->
                     <div class="col-md-4 mb-4">
-                        <div class="card resource-card">
-                            <div class="card-body p-4">
-                                <div class="d-flex align-items-center mb-3">
-                                    <div class="resource-icon">
-                                        <i class="fa fa-database"></i>
-                                    </div>
-                                    <h4 class="card-title mb-0">Base de Données</h4>
+                        <div class="actualite-card">
+                            <div class="actualite-image position-relative">
+                                <img src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Innovation agricole">
+                                <div class="actualite-badge">Nouveau</div>
+                            </div>
+                            <div class="actualite-content">
+                                <h3 class="actualite-title">Lancement du Projet Agro-Innovation 2024</h3>
+                                <div class="actualite-meta">
+                                    <div><i class="fa fa-calendar"></i> 15 Nov 2023</div>
+                                    <div><i class="fa fa-user"></i> Par CAIDA</div>
                                 </div>
-                                <p class="card-text">Accédez à notre base de données complète sur les technologies agricoles, les variétés performantes et les pratiques innovantes testées en Afrique.</p>
-                                <a href="/centres-de-connaissance/base-de-donnees" class="btn-download">Explorer la base de données</a>
+                                <p class="actualite-description">CAIDA lance son nouveau projet d'agro-innovation visant à développer des solutions durables pour les petits agriculteurs africains.</p>
+                                <button class="btn-lire-plus" data-toggle="modal" data-target="#actualiteModal" data-actualite="1">Lire la suite</button>
                             </div>
                         </div>
                     </div>
                     
+                    <!-- Actualité 2 -->
                     <div class="col-md-4 mb-4">
-                        <div class="card resource-card">
-                            <div class="card-body p-4">
-                                <div class="d-flex align-items-center mb-3">
-                                    <div class="resource-icon">
-                                        <i class="fa fa-video-camera"></i>
-                                    </div>
-                                    <h4 class="card-title mb-0">Bibliothèque Multimédia</h4>
+                        <div class="actualite-card">
+                            <div class="actualite-image">
+                                <img src="https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Formation agricole">
+                            </div>
+                            <div class="actualite-content">
+                                <h3 class="actualite-title">Formation en Agroécologie: Bilan 2023</h3>
+                                <div class="actualite-meta">
+                                    <div><i class="fa fa-calendar"></i> 8 Nov 2023</div>
+                                    <div><i class="fa fa-user"></i> Par CAIDA</div>
                                 </div>
-                                <p class="card-text">Découvrez notre collection de vidéos, tutoriels et webinaires sur les innovations agricoles et les bonnes pratiques.</p>
-                                <a href="/centres-de-connaissance/bibliotheque-multimedia" class="btn-download">Accéder à la bibliothèque</a>
+                                <p class="actualite-description">Retour sur notre programme de formation en agroécologie qui a formé plus de 200 agriculteurs cette année.</p>
+                                <button class="btn-lire-plus" data-toggle="modal" data-target="#actualiteModal" data-actualite="2">Lire la suite</button>
                             </div>
                         </div>
                     </div>
                     
+                    <!-- Actualité 3 -->
                     <div class="col-md-4 mb-4">
-                        <div class="card resource-card">
-                            <div class="card-body p-4">
-                                <div class="d-flex align-items-center mb-3">
-                                    <div class="resource-icon">
-                                        <i class="fa fa-map"></i>
-                                    </div>
-                                    <h4 class="card-title mb-0">Cartographie Interactive</h4>
+                        <div class="actualite-card">
+                            <div class="actualite-image">
+                                <img src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Partenariat international">
+                            </div>
+                            <div class="actualite-content">
+                                <h3 class="actualite-title">Nouveau Partenariat avec l'UE</h3>
+                                <div class="actualite-meta">
+                                    <div><i class="fa fa-calendar"></i> 1 Nov 2023</div>
+                                    <div><i class="fa fa-user"></i> Par CAIDA</div>
                                 </div>
-                                <p class="card-text">Explorez nos projets et interventions à travers une carte interactive présentant les résultats et impacts par région.</p>
-                                <a href="/centres-de-connaissance/cartographie" class="btn-download">Voir la carte</a>
+                                <p class="actualique-description">CAIDA signe un nouveau partenariat avec l'Union Européenne pour renforcer l'innovation agricole en Afrique de l'Ouest.</p>
+                                <button class="btn-lire-plus" data-toggle="modal" data-target="#actualiteModal" data-actualite="3">Lire la suite</button>
                             </div>
                         </div>
                     </div>
                 </div>
+                
+                <!-- Pagination -->
+                <nav aria-label="Page navigation">
+                    <ul class="pagination justify-content-center mt-5">
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Précédent</a>
+                        </li>
+                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">Suivant</a>
+                        </li>
+                    </ul>
+                </nav>
             </div>
-        </div>
+        </section>
         
-        <div class="container my-5">
-            <div class="row">
-                <div class="col-md-8 mx-auto text-center">
-                    <h2 class="mb-4">Nos Ressources en Chiffres</h2>
-                    <div class="row">
-                        <div class="col-md-3">
-                            <div class="stat-item">
-                                <div class="stats-number">150+</div>
-                                <div class="stats-label">Publications</div>
+        <!-- Interface Administrateur (cachée par défaut) -->
+        <section class="admin-section" id="admin-section" style="display: none;">
+            <div class="container">
+                <div class="admin-header">
+                    <h2 class="admin-title">Interface Administrateur - Actualités</h2>
+                    <p class="admin-subtitle">Gérez les actualités et publications</p>
+                </div>
+                
+                <!-- Formulaire d'ajout d'actualité -->
+                <div class="card mb-4">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0">Ajouter une nouvelle actualité</h5>
+                    </div>
+                    <div class="card-body">
+                        <form id="actualiteForm">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="titre">Titre de l'actualité</label>
+                                        <input type="text" class="form-control" id="titre" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="image">URL de l'image</label>
+                                        <input type="text" class="form-control" id="image" required>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="stat-item">
-                                <div class="stats-number">45</div>
-                                <div class="stats-label">Études de cas</div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="date">Date de publication</label>
+                                        <input type="date" class="form-control" id="date" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="auteur">Auteur</label>
+                                        <input type="text" class="form-control" id="auteur" required>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="stat-item">
-                                <div class="stats-number">25</div>
-                                <div class="stats-label">Guides pratiques</div>
+                            <div class="form-group">
+                                <label for="description">Description courte</label>
+                                <textarea class="form-control" id="description" rows="2" required></textarea>
                             </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="stat-item">
-                                <div class="stats-number">12K</div>
-                                <div class="stats-label">Téléchargements</div>
+                            <div class="form-group">
+                                <label for="contenu">Contenu complet</label>
+                                <textarea class="form-control" id="contenu" rows="5" required></textarea>
                             </div>
+                            <button type="submit" class="btn btn-admin">Publier l'actualité</button>
+                        </form>
+                    </div>
+                </div>
+                
+                <!-- Liste des actualités existantes -->
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0">Actualités existantes</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Titre</th>
+                                        <th>Date</th>
+                                        <th>Auteur</th>
+                                        <th>Statut</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="actualites-list">
+                                    <!-- Les actualités seront ajoutées dynamiquement ici -->
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>-->
+        </section>
+    </div>
     
-    <footer class="bg-dark text-white pt-5 pb-4">
+    <!-- Modal de lecture d'actualité -->
+    <div class="modal fade" id="actualiteModal" tabindex="-1" role="dialog" aria-labelledby="actualiteModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="actualiteModalLabel">Titre de l'actualité</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-image">
+                        <img src="" alt="Image de l'actualité" id="modal-image">
+                    </div>
+                    <div class="modal-meta">
+                        <div id="modal-date"><i class="fa fa-calendar"></i> Date</div>
+                        <div id="modal-auteur"><i class="fa fa-user"></i> Auteur</div>
+                    </div>
+                    <div id="modal-contenu">
+                        <!-- Le contenu de l'actualité sera inséré ici -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer class="bg-dark text-white">
         <div class="container">
             <div class="row">
-                <div class="col-md-4">
-                     <a class="navbar-brand" href="index.html">
-                    <img src="logo_CAIDA.png" alt="logo-caida">
-                </a>
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <a class="navbar-brand mb-3 d-block" href="index.html">
+                        <img src="logo_CAIDA.png" alt="logo-caida" style="height: 50px;">
+                    </a>
                     <p>Centre Africain d'Innovation pour le Développement Agricole</p>
                     <p>Transforming African Agriculture through Innovation</p>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4 mb-4 mb-md-0">
                     <h5>Contact</h5>
-                    <p><i class="fa fa-map-marker"></i> NZUESSI BO: 105 Yamoussoukro, Yamoussoukro, Région des lacs (Cote d’Ivoire)</p>
-                    <p><i class="fa fa-phone"></i> +225 0104310721/ +225 0104310720</p>
-                    <p><i class="fa fa-envelope"></i> caidaafrique@gmail.com</p>
+                    <p><i class="fa fa-map-marker mr-2"></i> NZUESSI BO: 105 Yamoussoukro, Yamoussoukro, Région des lacs (Cote d'Ivoire)</p>
+                    <p><i class="fa fa-phone mr-2"></i> +225 0104310721 / +225 0104310720</p>
+                    <p><i class="fa fa-envelope mr-2"></i> caidaafrique@gmail.com</p>
                 </div>
                 <div class="col-md-4">
                     <h5>Suivez-nous</h5>
-                    <div class="social-links">
-                        <a href="#" class="text-white mr-3"><i class="fa fa-facebook"></i></a>
-                        <a href="#" class="text-white mr-3"><i class="fa fa-twitter"></i></a>
-                        <a href="#" class="text-white mr-3"><i class="fa fa-linkedin"></i></a>
+                    <div class="social-links mt-4">
+                        <a href="#" class="text-white"><i class="fa fa-facebook"></i></a>
+                        <a href="#" class="text-white"><i class="fa fa-twitter"></i></a>
+                        <a href="#" class="text-white"><i class="fa fa-linkedin"></i></a>
                         <a href="#" class="text-white"><i class="fa fa-youtube"></i></a>
                     </div>
                 </div>
             </div>
-            <hr class="bg-white">
+            <hr class="bg-white my-5">
             <div class="row">
                 <div class="col-md-12 text-center">
                     <p>&copy; 2025 CAIDA. Tous droits réservés.</p>
@@ -431,34 +694,142 @@
         </div>
     </footer>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
     
     <script>
-        $(document).ready(function(){
-            // Gestion de la barre de recherche
-            $('.wb-search-btn').click(function(){
-                $('.hide-element').toggleClass('hide-element');
-            });
-            
-            $('.btn-hide-form').click(function(){
-                $('.search-bar-block').parent().addClass('hide-element');
-            });
-            
-            // Filtrage des publications
-            $('.filter-buttons .btn').click(function(){
-                $('.filter-buttons .btn').removeClass('active');
-                $(this).addClass('active');
+        $(document).ready(function() {
+            // Basculer entre les interfaces publique et admin
+            $('#admin-toggle').click(function(e) {
+                e.preventDefault();
+                $('#public-section').toggle();
+                $('#admin-section').toggle();
                 
-                var filter = $(this).data('filter');
-                
-                if(filter === 'all') {
-                    $('.publication-card').show();
+                if ($('#admin-section').is(':visible')) {
+                    $(this).addClass('active');
+                    chargerActualitesAdmin();
                 } else {
-                    $('.publication-card').hide();
-                    $('.publication-card[data-category="' + filter + '"]').show();
+                    $(this).removeClass('active');
                 }
             });
+            
+            // Remplir le modal d'actualité avec les données
+            $('#actualiteModal').on('show.bs.modal', function (event) {
+                var button = $(event.relatedTarget);
+                var actualiteId = button.data('actualite');
+                var modal = $(this);
+                
+                // Récupérer les données de l'actualité (simulation)
+                var actualites = {
+                    1: {
+                        titre: "Lancement du Projet Agro-Innovation 2024",
+                        image: "https://images.unsplash.com/photo-1625246333195-78d9c38ad449?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+                        date: "15 Nov 2023",
+                        auteur: "Par CAIDA",
+                        contenu: "<p>CAIDA est fier d'annoncer le lancement de son nouveau projet d'agro-innovation 2024, une initiative ambitieuse visant à développer des solutions durables pour les petits agriculteurs africains.</p><p>Ce projet s'inscrit dans notre mission de transformation de l'agriculture africaine par l'innovation. Il ciblera spécifiquement les défis liés à la productivité, à la résilience climatique et à l'accès aux marchés.</p><p>Le projet Agro-Innovation 2024 comprendra :</p><ul><li>Le développement de technologies agricoles adaptées au contexte africain</li><li>La formation de 500 agriculteurs aux pratiques agricoles durables</li><li>La création de 10 centres d'innovation dans différentes régions</li><li>L'établissement de partenariats avec des institutions de recherche internationales</li></ul><p>Nous sommes convaincus que ce projet contribuera significativement à renforcer la sécurité alimentaire et à améliorer les moyens de subsistance des communautés agricoles en Afrique.</p>"
+                    },
+                    2: {
+                        titre: "Formation en Agroécologie: Bilan 2023",
+                        image: "https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+                        date: "8 Nov 2023",
+                        auteur: "Par CAIDA",
+                        contenu: "<p>Notre programme de formation en agroécologie a connu un succès remarquable en 2023, avec plus de 200 agriculteurs formés aux pratiques agricoles durables.</p><p>Ces formations ont été dispensées dans cinq régions différentes, couvrant une variété d'écosystèmes et de systèmes de production agricole.</p><p>Les participants ont appris :</p><ul><li>Les principes de l'agroécologie et de l'agriculture durable</li><li>Les techniques de conservation des sols et de l'eau</li><li>La gestion intégrée des ravageurs et des maladies</li><li>La diversification des cultures et des systèmes agroforestiers</li></ul><p>Les retours des participants ont été extrêmement positifs, avec 95% d'entre eux déclarant avoir amélioré leurs pratiques agricoles après la formation. Nous prévoyons d'étendre ce programme à davantage de régions en 2024.</p>"
+                    },
+                    3: {
+                        titre: "Nouveau Partenariat avec l'UE",
+                        image: "https://images.unsplash.com/photo-1625246333195-78d9c38ad449?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+                        date: "1 Nov 2023",
+                        auteur: "Par CAIDA",
+                        contenu: "<p>CAIDA a le plaisir d'annoncer la signature d'un nouveau partenariat stratégique avec l'Union Européenne, visant à renforcer l'innovation agricole en Afrique de l'Ouest.</p><p>Ce partenariat, d'une durée de cinq ans, permettra de financer des projets de recherche et d'innovation dans les domaines de l'agriculture durable, de la résilience climatique et de la sécurité alimentaire.</p><p>Les principaux objectifs de ce partenariat sont :</p><ul><li>Développer et diffuser des technologies agricoles innovantes</li><li>Renforcer les capacités des institutions de recherche locales</li><li>Promouvoir l'entreprenariat agricole chez les jeunes</li><li>Faciliter l'accès aux marchés pour les petits producteurs</li></ul><p>Ce partenariat représente une étape importante dans nos efforts pour transformer l'agriculture africaine et contribuer à la réalisation des Objectifs de Développement Durable.</p>"
+                    }
+                };
+                
+                var actualite = actualites[actualiteId];
+                
+                modal.find('.modal-title').text(actualite.titre);
+                modal.find('#modal-image').attr('src', actualite.image);
+                modal.find('#modal-date').html('<i class="fa fa-calendar"></i> ' + actualite.date);
+                modal.find('#modal-auteur').html('<i class="fa fa-user"></i> ' + actualite.auteur);
+                modal.find('#modal-contenu').html(actualite.contenu);
+            });
+            
+            // Gestion du formulaire d'ajout d'actualité
+            $('#actualiteForm').submit(function(e) {
+                e.preventDefault();
+                
+                // Récupérer les données du formulaire
+                var formData = {
+                    titre: $('#titre').val(),
+                    image: $('#image').val(),
+                    date: $('#date').val(),
+                    auteur: $('#auteur').val(),
+                    description: $('#description').val(),
+                    contenu: $('#contenu').val()
+                };
+                
+                // Envoyer les données au serveur (simulation)
+                $.ajax({
+                    type: 'POST',
+                    url: 'ajouter_actualite.php',
+                    data: formData,
+                    success: function(response) {
+                        alert('Actualité publiée avec succès!');
+                        $('#actualiteForm')[0].reset();
+                        chargerActualitesAdmin();
+                        
+                        // Mettre à jour la section publique
+                        location.reload();
+                    },
+                    error: function() {
+                        alert('Une erreur est survenue lors de la publication de l\'actualité.');
+                    }
+                });
+            });
+            
+            // Fonction pour charger les actualités dans l'interface admin
+            function chargerActualitesAdmin() {
+                // Simulation de chargement des actualités depuis le serveur
+                var actualites = [
+                    {
+                        id: 1,
+                        titre: 'Lancement du Projet Agro-Innovation 2024',
+                        date: '2023-11-15',
+                        auteur: 'CAIDA',
+                        statut: 'Publié'
+                    },
+                    {
+                        id: 2,
+                        titre: 'Formation en Agroécologie: Bilan 2023',
+                        date: '2023-11-08',
+                        auteur: 'CAIDA',
+                        statut: 'Publié'
+                    },
+                    {
+                        id: 3,
+                        titre: 'Nouveau Partenariat avec l\'UE',
+                        date: '2023-11-01',
+                        auteur: 'CAIDA',
+                        statut: 'Publié'
+                    }
+                ];
+                
+                var html = '';
+                actualites.forEach(function(actualite) {
+                    html += '<tr>';
+                    html += '<td>' + actualite.titre + '</td>';
+                    html += '<td>' + actualite.date + '</td>';
+                    html += '<td>' + actualite.auteur + '</td>';
+                    html += '<td><span class="badge badge-success">' + actualite.statut + '</span></td>';
+                    html += '<td>';
+                    html += '<button class="btn btn-admin btn-edit btn-sm mr-2" data-id="' + actualite.id + '">Modifier</button>';
+                    html += '<button class="btn btn-admin btn-delete btn-sm" data-id="' + actualite.id + '">Supprimer</button>';
+                    html += '</td>';
+                    html += '</tr>';
+                });
+                
+                $('#actualites-list').html(html);
+            }
         });
     </script>
 </body>
