@@ -5,123 +5,476 @@
     <title>Page d'accueil - CAIDA</title>
     <meta name="description"
           content="CAIDA (Centre Africain pour l'Innovation et le Développement Agricole) est une organisation dédiée à la transformation agricole en Afrique par l'innovation technologique et le développement durable.">
-
     <meta name="keywords" content="caida, innovation agricole, technologie agricole, afrique, développement durable, sécurité alimentaire, transformation digitale">
-
     <meta name="robots" content="index, follow">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <link rel="stylesheet" href="https://www.coraf.org/css/style.css">
-    <link rel="stylesheet" href="https://www.coraf.org/css/bootstrap.min.css">
-
-    <!-- load bootstrap from a cdn -->
+    
+    <!-- Stylesheets intégrées -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
-
-    <!-- pour la carte -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i&display=swap" rel="stylesheet">
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://www.coraf.org/css/carte.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="icon" href="https://via.placeholder.com/64" type="image/x-icon">
     
     <style>
-        .btn-decouvrir {
-            background-color: #28a745;
-            color: white;
+        :root {
+            --primary-color: #28a745;
+            --primary-dark: #218838;
+            --secondary-color: #155724;
+            --light-bg: #f8f9fa;
+            --dark-bg: #343a40;
+            --text-dark: #212529;
+            --text-light: #6c757d;
+            --card-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            --card-hover-shadow: 0 15px 40px rgba(0,0,0,0.15);
+            --transition: all 0.4s ease;
+        }
+        
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+        
+        /* Header & Navigation */
+        .general-nav {
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: var(--transition);
+            padding: 15px 0;
+        }
+        
+        .general-nav.scrolled {
+            padding: 10px 0;
+            background-color: rgba(255,255,255,0.95) !important;
+        }
+        
+        .navbar-brand img {
+            height: 50px;
+            transition: var(--transition);
+        }
+        
+        .nav-link {
+            font-weight: 600;
+            position: relative;
+            transition: var(--transition);
+            margin: 0 5px;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+        
+        .dropdown-menu {
+            border: none;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .dropdown-item {
             padding: 10px 20px;
-            border-radius: 5px;
+            transition: all 0.2s ease;
+        }
+        
+        .dropdown-item:hover {
+            background-color: rgba(40, 167, 69, 0.1);
+            color: var(--primary-color);
+        }
+        
+        /* Search Bar */
+        .search-bar-block {
+            position: absolute;
+            right: 0;
+            top: 100%;
+            background: white;
+            padding: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            z-index: 1000;
+            opacity: 0;
+            transform: translateY(-10px);
+            visibility: hidden;
+            transition: var(--transition);
+        }
+        
+        .search-bar-block.show {
+            opacity: 1;
+            transform: translateY(0);
+            visibility: visible;
+        }
+        
+        .btn-hide-form {
+            background: none;
+            border: none;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        
+        /* Hero Carousel */
+        .carousel-item {
+            height: 80vh;
+            min-height: 500px;
+        }
+        
+        .carousel-item img {
+            object-fit: cover;
+            height: 100%;
+            width: 100%;
+        }
+        
+        .carousel-caption {
+            background: rgba(0,0,0,0.6);
+            padding: 30px;
+            border-radius: 10px;
+            bottom: 20%;
+            text-align: left;
+            animation: fadeInUp 1s ease;
+        }
+        
+        .carousel-caption p {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .carousel-caption h1 {
+            font-size: 2.5rem;
+            margin-bottom: 25px;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        
+        .btn-decouvrir {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 30px;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
-            transition: all 0.3s ease;
+            transition: var(--transition);
+            font-weight: 600;
+            border: none;
+            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
         }
         
         .btn-decouvrir:hover {
-            background-color: #218838;
+            background-color: var(--primary-dark);
             color: white;
             text-decoration: none;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(40, 167, 69, 0.4);
         }
         
         .btn-decouvrir img {
             margin-left: 10px;
             width: 20px;
             height: 20px;
+            transition: transform 0.3s ease;
         }
         
-        .carousel-caption {
-            background: rgba(0,0,0,0.5);
-            padding: 20px;
-            border-radius: 10px;
-            bottom: 20%;
+        .btn-decouvrir:hover img {
+            transform: translateX(5px);
         }
         
-        .carousel-caption h1 {
-            font-size: 2rem;
-            margin-bottom: 20px;
+        /* Sections */
+        section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 50px;
+            position: relative;
+            text-align: center;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background: var(--primary-color);
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
         }
         
         .section-qui-sommes-nous {
-            padding: 50px 0;
+            background-color: var(--light-bg);
+        }
+        
+        .content-text h2 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+            color: var(--secondary-color);
+        }
+        
+        .content-text p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            color: var(--text-dark);
         }
         
         .content-map {
             height: 400px;
-            background-color: #f8f9fa;
+            background-color: white;
             border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
+            box-shadow: var(--card-shadow);
+            overflow: hidden;
+            transition: transform 0.5s ease;
         }
         
-        .map-placeholder {
+        .content-map:hover {
+            transform: translateY(-10px);
+        }
+        
+        .map-placeholder img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+        
+        /* Domaines d'intervention - Cartes améliorées */
+        .intervention-card {
+            box-shadow: var(--card-shadow);
+            border-radius: 15px;
+            transition: var(--transition);
             text-align: center;
-            color: #6c757d;
+            height: 100%;
+            border: none;
+            overflow: hidden;
+            margin-bottom: 30px;
+            display: flex;
+            flex-direction: column;
         }
         
-        .map-placeholder i {
-            font-size: 48px;
+        .intervention-card:hover {
+            transform: translateY(-15px);
+            box-shadow: var(--card-hover-shadow);
+        }
+        
+        .card-image-container {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .intervention-card .card-img-top {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .intervention-card:hover .card-img-top {
+            transform: scale(1.05);
+        }
+        
+        .intervention-card .card-body {
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+        
+        .intervention-card .card-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--secondary-color);
+        }
+        
+        .intervention-card .card-text {
+            color: var(--text-light);
             margin-bottom: 20px;
-            color: #28a745;
+            line-height: 1.6;
+            flex-grow: 1;
         }
         
-        .content-text {
-            padding: 20px;
+        .intervention-card ul {
+            text-align: left;
+            margin-bottom: 0;
         }
         
-        .mb-100 {
-            margin-bottom: 100px;
+        .intervention-card li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: flex-start;
         }
         
+        .intervention-card i {
+            margin-top: 3px;
+            margin-right: 10px;
+            flex-shrink: 0;
+        }
+        
+        /* Actualités */
+        .news-card {
+            border: none;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .news-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--card-hover-shadow);
+        }
+        
+        .news-card .card-img-top {
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .news-card .card-body {
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+        
+        .news-card .card-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--secondary-color);
+        }
+        
+        .news-card .card-text {
+            color: var(--text-light);
+            flex-grow: 1;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark-bg);
+            padding: 70px 0 30px;
+        }
+        
+        footer h5 {
+            font-weight: 700;
+            margin-bottom: 25px;
+            position: relative;
+        }
+        
+        footer h5::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 3px;
+            background: var(--primary-color);
+            bottom: -10px;
+            left: 0;
+        }
+        
+        footer p {
+            margin-bottom: 15px;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            transition: var(--transition);
+            margin-right: 10px;
+        }
+        
+        .social-links a:hover {
+            background: var(--primary-color);
+            transform: translateY(-5px);
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Responsive */
         @media (max-width: 768px) {
+            .carousel-item {
+                height: 60vh;
+                min-height: 400px;
+            }
+            
+            .carousel-caption {
+                bottom: 10%;
+                padding: 20px;
+            }
+            
             .carousel-caption h1 {
                 font-size: 1.5rem;
             }
             
-            .section-qui-sommes-nous {
-                flex-direction: column;
+            .section-title {
+                font-size: 2rem;
             }
             
-            .col-50 {
-                width: 100%;
+            section {
+                padding: 60px 0;
             }
-        }
-
-        .intervention-card{
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            border-radius: 10px;
-            transition: transform 0.3s ease;
-            text-align: center;
-            width: 100%;
-            height: 100%;
+            
+            .intervention-card .card-body {
+                padding: 20px;
+            }
         }
     </style>
 </head>
 
 <body>
     <header>
-        <nav id="nav-element" class="navbar general-nav navbar-expand-lg navbar-light bg-white">
+        <nav id="nav-element" class="navbar general-nav navbar-expand-lg navbar-light bg-white fixed-top">
             <div class="container">
                 <a class="navbar-brand" href="index.html">
                     <img src="logo_CAIDA.png" alt="logo-caida">
@@ -140,10 +493,6 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="mv.html">Mission et vision</a>
-                                <!--<a class="dropdown-item" href="og.html">Organisation et gouvernance</a>-->
-                                <!--<a class="dropdown-item" href="/centres-specialises">Centres spécialisés</a>
-                                <a class="dropdown-item" href="/equipe">Notre équipe</a>
-                                <a class="dropdown-item" href="/ethique">Éthique & politique</a>-->
                                 <a class="dropdown-item" href="partenaires.html">Partenaires</a>
                             </div>
                         </li>
@@ -153,62 +502,27 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownProjet">
                                 <a class="dropdown-item" href="domaines.html">Domaines d'interventions</a>
-                                <!--<a class="dropdown-item" href="/portfolio">Portefeuilles de projet</a>-->
                             </div>
                         </li>
-                        <!--<li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownActualites" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Actualités
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdownActualites">
-                                <a class="dropdown-item" href="actualités.html">Actualités</a>
-                                <a class="dropdown-item" href="/espace-presse">Espace presse</a>
-                                <a class="dropdown-item" href="/evenement">Évènements</a>
-                            </div>
-                        </li>-->
-                       <!-- <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownImpact" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Impact
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdownImpact">
-                                <a class="dropdown-item" href="/resultat">Résultats</a>
-                                <a class="dropdown-item" href="/histoire-impact">Histoires d'impact</a>
-                                <a class="dropdown-item" href="/blog">Blog</a>
-                            </div>
-                        </li>-->
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownRessources" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Ressources
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownRessources">
                                 <a class="dropdown-item" href="publication.html">Publications</a>
-                                <!--<a class="dropdown-item" href="/centres-de-connaissance">Centres de connaissance</a>
-                                <a class="dropdown-item" href="/directives-de-marque">Directive de marque</a>
-                                <a class="dropdown-item" href="/reglement-lignes-directrices">Règlements et lignes directives</a>-->
                             </div>
                         </li>
-                        <!--<li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownOpportunités" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Opportunités
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdownOpportunités">
-                                <a class="dropdown-item" href="carrière.html">Carrières</a>
-                                <a class="dropdown-item" href="/passation-marche">Passation de marchés</a>
-                            </div>
-                        </li>-->
 
-                        <button id="" class="btn wb-search-btn">
+                        <button id="search-btn" class="btn wb-search-btn">
                             <i class="fa fa-search" aria-hidden="true"></i>
                         </button>
                     </ul>
-                    <div class="hide-element">
-                        <div class="search-bar-block d-flex align-items-center ">
-                            <button class="btn-hide-form ">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots" viewBox="0 0 16 16">
-                                    <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
-                                </svg>
+                    <div class="search-bar-block">
+                        <div class="d-flex align-items-center">
+                            <button class="btn-hide-form">
+                                <i class="fa fa-times"></i>
                             </button>
-                            <form action="/homesearch" class="mb-0 d-flex align-items-center">
+                            <form action="/homesearch" class="mb-0 d-flex align-items-center w-100">
                                 <input type="search" name="search-input" id="search" class="form-control mr-2" placeholder="Recherche" required>
                                 <button type="submit" class="btn btn-success btn-search"> <i class="fa fa-search" aria-hidden="true"></i></button>
                             </form>
@@ -219,7 +533,7 @@
         </nav>
     </header>
     
-    <div class="content-page">
+    <div class="content-page" style="padding-top: 80px;">
         <div id="carouselExample" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
                 <li data-target="#carouselExample" data-slide-to="0" class="active"></li>
@@ -275,214 +589,196 @@
         
         <div class="content-home">
             <div class="container">
-                <section class="section-qui-sommes-nous mb-100 d-flex">
-                    <div class="col-50">
-                        <div class="content-text">
-                            <h2>Qui sommes-nous ?</h2>
-                            <p>CAIDA (Centre Africain pour l'Innovation et le Développement Agricole) est une organisation panafricaine dédiée à la transformation de l'agriculture sur le continent par l'innovation technologique et le développement durable.</p>
-                            <p>Nous travaillons en partenariat avec les gouvernements, le secteur privé, les institutions de recherche et les communautés agricoles pour développer et déployer des solutions innovantes adaptées aux défis spécifiques de l'agriculture africaine.</p>
-                            <a href="/a-propos" class="btn btn-decouvrir mt-3"><span>En savoir plus</span>
-                                <img src="images/img2.jpg" alt=""></a>
+                <section class="section-qui-sommes-nous fade-in">
+                    <div class="row align-items-center">
+                        <div class="col-lg-6 mb-5 mb-lg-0">
+                            <div class="content-text">
+                                <h2>Qui sommes-nous ?</h2>
+                                <p>CAIDA (Centre Africain pour l'Innovation et le Développement Agricole) est une organisation panafricaine dédiée à la transformation de l'agriculture sur le continent par l'innovation technologique et le développement durable.</p>
+                                <p>Nous travaillons en partenariat avec les gouvernements, le secteur privé, les institutions de recherche et les communautés agricoles pour développer et déployer des solutions innovantes adaptées aux défis spécifiques de l'agriculture africaine.</p>
+                                <a href="/a-propos" class="btn btn-decouvrir mt-3"><span>En savoir plus</span>
+                                    <img src="https://www.coraf.org/img/arrow-right1.svg" alt=""></a>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-50">
-                        <div class="content-map">
-                            <div class="map-placeholder">
-                                <img src="images/Africa_(orthographic_projection).svg.png" alt="">
-                                <h3>Présence en Afrique</h3>
-                                <p>CAIDA opère dans 18 pays africains avec plus de 50 projets en cours</p>
+                        <div class="col-lg-6">
+                            <div class="content-map">
+                                <div class="map-placeholder">
+                                    <img src="images/Africa_(orthographic_projection).svg.png" alt="Carte de l'Afrique">
+                                </div>
                             </div>
                         </div>
                     </div>
                 </section>
                 
-                <section class="section-nos-domaines mb-100">
-                    <h2 class="text-center mb-5">Nos domaines d'intervention</h2>
+                <section class="section-nos-domaines">
+                    <h2 class="section-title">Nos domaines d'intervention</h2>
                     <div class="row">
+                        <div class="col-md-4 mb-4 fade-in">
+                            <div class="card intervention-card">
+                                <div class="card-image-container">
+                                    <img src="images/img3.jpg" class="card-img-top" alt="Agriculture durable">
+                                </div>
+                                <div class="card-body">
+                                    <h3 class="card-title">Agriculture durable</h3>
+                                    <p class="card-text">Le centre vise la promotion de pratiques agricoles respectueuses de l'environnement, économiquement viables et socialement équitables. Il s'agit de renforcer la résilience des producteurs tout en préservant la fertilité des sols et la santé des écosystèmes.</p>
+                                    <ul class="list-unstyled text-left mt-3">
+                                        <li><i class="fa fa-check text-success mr-2"></i> Pratiquer l'Agroécologie</li>
+                                        <li><i class="fa fa-check text-success mr-2"></i> Réduire le gaspillage alimentaire</li>
+                                        <li><i class="fa fa-check text-success mr-2"></i> Protéger les sols</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                         
-                        <div class="col-md-4">
-                    <div class="card intervention-card">
-                        <div class="card-body text-center p-4">
-                            <div>
-                                <img src="images/img3.jpg" class="card-img-top" alt="">
+                        <div class="col-md-4 mb-4 fade-in">
+                            <div class="card intervention-card">
+                                <div class="card-image-container">
+                                    <img src="images/img1.jpg" class="card-img-top" alt="Changement climatique">
+                                </div>
+                                <div class="card-body">
+                                    <h3 class="card-title">Changement climatique</h3>
+                                    <p class="card-text">Le centre développe et diffuse des solutions pour aider les communautés agricoles à s'adapter aux effets du changement climatique. Cela inclut la gestion des risques climatiques, la promotion de l'agriculture intelligente face au climat et la réduction des émissions de gaz à effet de serre.</p>
+                                    <ul class="list-unstyled text-left mt-3">
+                                        <li><i class="fa fa-check text-success mr-2"></i> Sensibiliser et éduquer</li>
+                                        <li><i class="fa fa-check text-success mr-2"></i> Développer des politiques d'adaptation</li>
+                                        <li><i class="fa fa-check text-success mr-2"></i> Encourager la recherche et l'innovation</li>
+                                    </ul>
+                                </div>
                             </div>
-                            <h3 class="card-title">Agriculture durable</h3>
-                            <p class="card-text">Le centre vise la promotion de pratiques agricoles respectueuses de l’environnement, économiquement viables et socialement équitables. Il s’agit de renforcer la résilience des producteurs tout en préservant la fertilité des sols et la santé des écosystèmes. </p>
-                            <ul class="list-unstyled text-left mt-3">
-                                <li><i class="fa fa-check text-success mr-2"></i> Pratiquer l'Agroécologie</li>
-                                <li><i class="fa fa-check text-success mr-2"></i> Réduire le gaspillage alimentaire</li>
-                                <li><i class="fa fa-check text-success mr-2"></i> Protégerles sols</li>
-                            </ul>
                         </div>
-                    </div>
-                </div>
-                
-                <div class="col-md-4">
-                    <div class="card intervention-card">
-                        <div class="card-body text-center p-4">
-                            <div>
-                                <img src="images/img1.jpg" class="card-img-top" alt="">
+                        
+                        <div class="col-md-4 mb-4 fade-in">
+                            <div class="card intervention-card">
+                                <div class="card-image-container">
+                                    <img src="images/img2.jpg" class="card-img-top" alt="Eau et énergie">
+                                </div>
+                                <div class="card-body">
+                                    <h3 class="card-title">Eau et énergie</h3>
+                                    <p class="card-text">Le centre met l'accent sur la gestion intégrée des ressources en eau et sur l'accès à des sources d'énergie propres et renouvelables. L'objectif est de soutenir la production agricole et la transformation agroalimentaire tout en réduisant la dépendance aux énergies fossiles.</p>
+                                    <ul class="list-unstyled text-left mt-3">
+                                        <li><i class="fa fa-check text-success mr-2"></i> Installer des systèmes d'économie d'eau</li>
+                                        <li><i class="fa fa-check text-success mr-2"></i> Passer aux énergies renouvelables</li>
+                                        <li><i class="fa fa-check text-success mr-2"></i> Réduire la consommation énergétique</li>
+                                    </ul>
+                                </div>
                             </div>
-                            <h3 class="card-title">Changement climatique</h3>
-                            <p class="card-text">Le centre développe et diffuse des solutions pour aider les communautés agricoles à s’adapter aux effets du changement climatique. Cela inclut la gestion des risques climatiques, la promotion de l’agriculture intelligente face au climat et la réduction des émissions de gaz à effet de serre. 
-</p>
-                            <ul class="list-unstyled text-left mt-3">
-                                <li><i class="fa fa-check text-success mr-2"></i> Sensibiliser et éduquer</li>
-                                <li><i class="fa fa-check text-success mr-2"></i> Développer des politiques d'adaptation</li>
-                                <li><i class="fa fa-check text-success mr-2"></i> encourager la recherche et l'innovation</li>
-                            </ul>
                         </div>
-                    </div>
-                </div>
-                
-                <div class="col-md-4">
-                    <div class="card intervention-card">
-                        <div class="card-body text-center p-4">
-                            <div>
-                                <img src="images/img2.jpg" class="card-img-top" alt="">
-                            </div>
-                            <h3 class="card-title">Eau et énergie</h3>
-                            <p class="card-text">Le centre met l’accent sur la gestion intégrée des ressources en eau et sur l’accès à des sources d’énergie propres et renouvelables. L’objectif est de soutenir la production agricole et la transformation agroalimentaire tout en réduisant la dépendance aux énergies fossiles. Il promeut l’innovation technologique pour une meilleure efficacité et autonomie énergétique dans le secteur rural.</p>
-                            <ul class="list-unstyled text-left mt-3">
-                                <li><i class="fa fa-check text-success mr-2"></i> Installer des systèmes d'économie d'eau</li>
-                                <li><i class="fa fa-check text-success mr-2"></i> Passer aux énergies renouvelables</li>
-                                <li><i class="fa fa-check text-success mr-2"></i> Réduire la consommation énergétique</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-             <div class="row mb-5">
-                <div class="col-md-4">
-                    <div class="card intervention-card">
-                        <div class="card-body text-center p-4">
-                            <div>
-                               <img src="images/img4.jpg" class="card-img-top" alt="">
-                            </div>
-                            <h3 class="card-title">Biodiversité et environnement</h3>
-                            <p class="card-text">Le CAIDA œuvre pour la conservation de la biodiversité agricole et naturelle, essentielle au maintien de l’équilibre des écosystèmes. Les initiatives favorisent la valorisation des ressources locales, la restauration des terres dégradées et la protection des habitats naturels. Ce domaine encourage aussi les pratiques agroécologiques et la sensibilisation environnementale.</p>
-                            <ul class="list-unstyled text-left mt-3">
-                                <li><i class="fa fa-check text-success mr-2"></i> Protéger les habitats naturels</li>
-                                <li><i class="fa fa-check text-success mr-2"></i> Lutter contre la pollution</li>
-                                <li><i class="fa fa-check text-success mr-2"></i> Soutenir les espèces locales</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col-md-4">
-                    <div class="card intervention-card">
-                        <div class="card-body text-center p-4">
-                            <div>
-                                <img src="images/img5.jpg" class="card-img-top" alt="">
-                            </div>
-                            <h3 class="card-title">Gestion des gaz à effet de serre (GES)</h3>
-                            <p class="card-text">Le centre appuie le suivi, la quantification et la réduction des émissions de GES dans les activités agricoles et rurales. Il promeut des technologies et pratiques bas carbone, comme la valorisation des déchets organiques ou l’agroforesterie. Ces actions contribuent à la transition vers une agriculture plus propre et compatible avec les engagements climatiques mondiaux.</p>
-                            <ul class="list-unstyled text-left mt-3">
-                                <li><i class="fa fa-check text-success mr-2"></i> Promouvoir les transports propres</li>
-                                <li><i class="fa fa-check text-success mr-2"></i> Améliorer l'éfficacité énergétique</li>
-                                <li><i class="fa fa-check text-success mr-2"></i> Planter des arbres</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col-md-4">
-                    <div class="card intervention-card">
-                        <div class="card-body text-center p-4">
-                            <div>
-                               <img src="images/img3.jpg" class="card-img-top" alt="">
-                            </div>
-                            <h3 class="card-title">Chaînes de Valeur</h3>
-                            <p class="card-text">Renforcement des chaînes de valeur agricoles pour améliorer l'accès aux marchés et augmenter la valeur ajoutée.</p>
-                            <ul class="list-unstyled text-left mt-3">
-                                <li><i class="fa fa-check text-success mr-2"></i> Transformation des produits</li>
-                                <li><i class="fa fa-check text-success mr-2"></i> Logistique et stockage</li>
-                                <li><i class="fa fa-check text-success mr-2"></i> Accès au financement</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
                     </div>
                     
+                    <div class="row">
+                        <div class="col-md-4 mb-4 fade-in">
+                            <div class="card intervention-card">
+                                <div class="card-image-container">
+                                   <img src="images/img4.jpg" class="card-img-top" alt="Biodiversité et environnement">
+                                </div>
+                                <div class="card-body">
+                                    <h3 class="card-title">Biodiversité et environnement</h3>
+                                    <p class="card-text">Le CAIDA œuvre pour la conservation de la biodiversité agricole et naturelle, essentielle au maintien de l'équilibre des écosystèmes. Les initiatives favorisent la valorisation des ressources locales, la restauration des terres dégradées et la protection des habitats naturels.</p>
+                                    <ul class="list-unstyled text-left mt-3">
+                                        <li><i class="fa fa-check text-success mr-2"></i> Protéger les habitats naturels</li>
+                                        <li><i class="fa fa-check text-success mr-2"></i> Lutter contre la pollution</li>
+                                        <li><i class="fa fa-check text-success mr-2"></i> Soutenir les espèces locales</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4 mb-4 fade-in">
+                            <div class="card intervention-card">
+                                <div class="card-image-container">
+                                    <img src="images/img5.jpg" class="card-img-top" alt="Gestion des gaz à effet de serre">
+                                </div>
+                                <div class="card-body">
+                                    <h3 class="card-title">Gestion des gaz à effet de serre (GES)</h3>
+                                    <p class="card-text">Le centre appuie le suivi, la quantification et la réduction des émissions de GES dans les activités agricoles et rurales. Il promeut des technologies et pratiques bas carbone, comme la valorisation des déchets organiques ou l'agroforesterie.</p>
+                                    <ul class="list-unstyled text-left mt-3">
+                                        <li><i class="fa fa-check text-success mr-2"></i> Promouvoir les transports propres</li>
+                                        <li><i class="fa fa-check text-success mr-2"></i> Améliorer l'efficacité énergétique</li>
+                                        <li><i class="fa fa-check text-success mr-2"></i> Planter des arbres</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4 mb-4 fade-in">
+                            <div class="card intervention-card">
+                                <div class="card-image-container">
+                                   <img src="images/img3.jpg" class="card-img-top" alt="Chaînes de valeur">
+                                </div>
+                                <div class="card-body">
+                                    <h3 class="card-title">Chaînes de Valeur</h3>
+                                    <p class="card-text">Renforcement des chaînes de valeur agricoles pour améliorer l'accès aux marchés et augmenter la valeur ajoutée des produits agricoles. Nous travaillons à créer des liens durables entre producteurs, transformateurs et distributeurs.</p>
+                                    <ul class="list-unstyled text-left mt-3">
+                                        <li><i class="fa fa-check text-success mr-2"></i> Transformation des produits</li>
+                                        <li><i class="fa fa-check text-success mr-2"></i> Logistique et stockage</li>
+                                        <li><i class="fa fa-check text-success mr-2"></i> Accès au financement</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </section>
                 
-                <section class="section-actualites mb-100">
-                    <h2 class="text-center mb-5">Actualités récentes</h2>
+                <section class="section-actualites">
+                    <h2 class="section-title">Actualités récentes</h2>
                     <div class="row">
-                        <div class="col-md-4 mb-4">
-                            <div class="card h-100">
+                        <div class="col-md-6 mb-4 fade-in">
+                            <div class="card news-card">
                                 <img src="images/img3.jpg" class="card-img-top" alt="Formation agriculteurs">
                                 <div class="card-body">
                                     <h5 class="card-title">Programme de développement des marchés carbone</h5>
                                     <p class="card-text"><small class="text-muted">Publié le 12 octobre 2024</small></p>
-                                    <p class="card-text">Le Centre Africain pour le Développement Agricole (CAIDA) a mis en place un programme avec les professionnels et acteurs des marchés carbones en Afrique. <br> 
-                                    A travers cette initiative, CAIDA contribue activement au renforcement des compétences africains dans la mise en oeuvre de politiques et projets visant la réduction des émissions de gaz à éffet de serre et la promotion de l'agriculture durable.</p>
-                                    <a href="/actualite/formation-irrigation" class="btn btn-decouvrir"><span>Lire la suite</span>
-                                        <img src="" alt=""></a>
+                                    <p class="card-text">Le Centre Africain pour le Développement Agricole (CAIDA) a mis en place un programme avec les professionnels et acteurs des marchés carbones en Afrique. A travers cette initiative, CAIDA contribue activement au renforcement des compétences africains dans la mise en oeuvre de politiques et projets visant la réduction des émissions de gaz à effet de serre et la promotion de l'agriculture durable.</p>
+                                    <a href="/actualite/formation-irrigation" class="btn btn-decouvrir mt-auto"><span>Lire la suite</span>
+                                        <img src="https://www.coraf.org/img/arrow-right1.svg" alt=""></a>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4 mb-4">
-                            <div class="card h-100">
+                        <div class="col-md-6 mb-4 fade-in">
+                            <div class="card news-card">
                                 <img src="https://images.unsplash.com/photo-1586771107445-d3ca888129ff?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" class="card-img-top" alt="Partenariat technologique">
                                 <div class="card-body">
                                     <h5 class="card-title">Programme de gestion de projets carbone</h5>
                                     <p class="card-text"><small class="text-muted">Publié le 3 octobre 2025</small></p>
                                     <p class="card-text">CAIDA a mis en oeuvre le programme de gestion de projets carbone destiné à renforcer les compétences des professionnels africains dans la conceptions, le financement et la gestion opérationnelle de projets carbone. Le programme vise notamment à combler le déficit d'expertise locale en matière de problématique liées aux mécanismes carbones.</p>
-                                    <a href="/actualite/partenariat-agritech" class="btn btn-decouvrir"><span>Lire la suite</span>
-                                        <img src="" alt=""></a>
-                                </div>
-                            </div>
-                        </div>
-                        <!--<div class="col-md-4 mb-4">
-                            <div class="card h-100">
-                                <img src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" class="card-img-top" alt="Forum innovation">
-                                <div class="card-body">
-                                    <h5 class="card-title">Forum annuel sur l'innovation agricole</h5>
-                                    <p class="card-text"><small class="text-muted">Publié le 20 mai 2023</small></p>
-                                    <p class="card-text">CAIDA organise son forum annuel sur l'innovation agricole les 15-17 juillet à Dakar, Sénégal.</p>
-                                    <a href="/evenement/forum-innovation" class="btn btn-decouvrir"><span>Lire la suite</span>
+                                    <a href="/actualite/partenariat-agritech" class="btn btn-decouvrir mt-auto"><span>Lire la suite</span>
                                         <img src="https://www.coraf.org/img/arrow-right1.svg" alt=""></a>
                                 </div>
                             </div>
-                        </div>-->
+                        </div>
                     </div>
                 </section>
             </div>
         </div>
     </div>
     
-    <footer class="bg-dark text-white pt-5 pb-4">
+    <footer class="bg-dark text-white">
         <div class="container">
             <div class="row">
-                <div class="col-md-4">
-                     <a class="navbar-brand" href="index.html">
-                    <img src="logo_CAIDA.png" alt="logo-caida">
-                </a>
-                    <p>Centre Africain pour l'Innovation et le Développement Agricole</p>
+                <div class="col-md-4 mb-4 mb-md-0">
+                     <a class="navbar-brand mb-3 d-block" href="index.html">
+                         <img src="logo_CAIDA.png" alt="logo-caida">
+                     </a>
+                    <p>Centre Africain d'Innovation pour le Développement Agricole</p>
                     <p>Transforming African Agriculture through Innovation</p>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4 mb-4 mb-md-0">
                     <h5>Contact</h5>
-                    <p><i class="fa fa-map-marker"></i> NZUESSI BO: 105 Yamoussoukro, Yamoussoukro, Région des lacs (Cote d’Ivoire)</p>
-                    <p><i class="fa fa-phone"></i> +225 0104310721/ +225 0104310720</p>
-                    <p><i class="fa fa-envelope"></i> caidaafrique@gmail.com</p>
+                    <p><i class="fa fa-map-marker mr-2"></i> NZUESSI BO: 105 Yamoussoukro, Yamoussoukro, Région des lacs (Cote d'Ivoire)</p>
+                    <p><i class="fa fa-phone mr-2"></i> +225 0104310721 / +225 0104310720</p>
+                    <p><i class="fa fa-envelope mr-2"></i> caidaafrique@gmail.com</p>
                 </div>
                 <div class="col-md-4">
                     <h5>Suivez-nous</h5>
-                    <div class="social-links">
-                        <a href="#" class="text-white mr-3"><i class="fa fa-facebook"></i></a>
-                        <a href="#" class="text-white mr-3"><i class="fa fa-twitter"></i></a>
-                        <a href="#" class="text-white mr-3"><i class="fa fa-linkedin"></i></a>
+                    <div class="social-links mt-4">
+                        <a href="#" class="text-white"><i class="fa fa-facebook"></i></a>
+                        <a href="#" class="text-white"><i class="fa fa-twitter"></i></a>
+                        <a href="#" class="text-white"><i class="fa fa-linkedin"></i></a>
                         <a href="#" class="text-white"><i class="fa fa-youtube"></i></a>
                     </div>
                 </div>
             </div>
-            <hr class="bg-white">
+            <hr class="bg-white my-5">
             <div class="row">
                 <div class="col-md-12 text-center">
                     <p>&copy; 2025 CAIDA. Tous droits réservés.</p>
@@ -491,9 +787,9 @@
         </div>
     </footer>
 
+    <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
     
     <script>
         $(document).ready(function(){
@@ -503,13 +799,54 @@
             });
             
             // Gestion de la barre de recherche
-            $('.wb-search-btn').click(function(){
-                $('.hide-element').toggleClass('hide-element');
+            $('#search-btn').click(function(){
+                $('.search-bar-block').toggleClass('show');
             });
             
             $('.btn-hide-form').click(function(){
-                $('.search-bar-block').parent().addClass('hide-element');
+                $('.search-bar-block').removeClass('show');
             });
+            
+            // Navbar scroll effect
+            $(window).scroll(function() {
+                if ($(window).scrollTop() > 50) {
+                    $('.general-nav').addClass('scrolled');
+                } else {
+                    $('.general-nav').removeClass('scrolled');
+                }
+            });
+            
+            // Animation au défilement
+            function checkFadeIn() {
+                $('.fade-in').each(function() {
+                    var elementTop = $(this).offset().top;
+                    var elementBottom = elementTop + $(this).outerHeight();
+                    var viewportTop = $(window).scrollTop();
+                    var viewportBottom = viewportTop + $(window).height();
+                    
+                    if (elementBottom > viewportTop && elementTop < viewportBottom) {
+                        $(this).addClass('visible');
+                    }
+                });
+            }
+            
+            // Vérifier au chargement
+            checkFadeIn();
+            
+            // Vérifier au défilement
+            $(window).scroll(function() {
+                checkFadeIn();
+            });
+            
+            // Animation des cartes au survol
+            $('.card').hover(
+                function() {
+                    $(this).find('.btn-decouvrir').addClass('animated');
+                },
+                function() {
+                    $(this).find('.btn-decouvrir').removeClass('animated');
+                }
+            );
         });
     </script>
 </body>
