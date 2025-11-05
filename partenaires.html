@@ -5,89 +5,303 @@
     <title>Partenaires - CAIDA</title>
     <meta name="description"
           content="Découvrez les partenaires institutionnels, techniques et financiers de CAIDA qui contribuent à la transformation agricole en Afrique.">
-
     <meta name="keywords" content="caida, partenaires, collaborations, alliances, institutions, afrique">
     <meta name="robots" content="index, follow">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <link rel="stylesheet" href="https://www.coraf.org/css/style.css">
-    <link rel="stylesheet" href="https://www.coraf.org/css/bootstrap.min.css">
+    
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="icon" href="https://via.placeholder.com/64" type="image/x-icon">
     
     <style>
+        :root {
+            --primary-color: #28a745;
+            --primary-dark: #218838;
+            --secondary-color: #155724;
+            --light-bg: #f8f9fa;
+            --dark-bg: #343a40;
+            --text-dark: #212529;
+            --text-light: #6c757d;
+            --card-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            --card-hover-shadow: 0 15px 40px rgba(0,0,0,0.15);
+            --transition: all 0.4s ease;
+        }
+        
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+        
+        /* Header & Navigation */
+        .general-nav {
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: var(--transition);
+            padding: 15px 0;
+        }
+        
+        .general-nav.scrolled {
+            padding: 10px 0;
+            background-color: rgba(255,255,255,0.95) !important;
+        }
+        
+        .navbar-brand img {
+            height: 50px;
+            transition: var(--transition);
+        }
+        
+        .nav-link {
+            font-weight: 600;
+            position: relative;
+            transition: var(--transition);
+            margin: 0 5px;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+        
+        .dropdown-menu {
+            border: none;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .dropdown-item {
+            padding: 10px 20px;
+            transition: all 0.2s ease;
+        }
+        
+        .dropdown-item:hover {
+            background-color: rgba(40, 167, 69, 0.1);
+            color: var(--primary-color);
+        }
+        
+        /* Search Bar */
+        .search-bar-block {
+            position: absolute;
+            right: 0;
+            top: 100%;
+            background: white;
+            padding: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            z-index: 1000;
+            opacity: 0;
+            transform: translateY(-10px);
+            visibility: hidden;
+            transition: var(--transition);
+        }
+        
+        .search-bar-block.show {
+            opacity: 1;
+            transform: translateY(0);
+            visibility: visible;
+        }
+        
+        .btn-hide-form {
+            background: none;
+            border: none;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        
+        /* Page Header */
         .page-header {
             background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
             background-size: cover;
             background-position: center;
             color: white;
-            padding: 100px 0;
+            padding: 120px 0;
             margin-bottom: 50px;
+            text-align: center;
+        }
+        
+        .page-header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .page-header .lead {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* Section Titles */
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 50px;
+            position: relative;
+            text-align: center;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background: var(--primary-color);
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        
+        /* Collaboration Types */
+        .collaboration-types {
+            padding: 80px 0;
+        }
+        
+        .collab-card {
+            text-align: center;
+            padding: 40px 30px;
+            border-radius: 15px;
+            background-color: white;
+            box-shadow: var(--card-shadow);
+            height: 100%;
+            transition: var(--transition);
+            margin-bottom: 30px;
+            border-top: 5px solid var(--primary-color);
+        }
+        
+        .collab-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--card-hover-shadow);
+        }
+        
+        .collab-icon {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            background-color: rgba(40, 167, 69, 0.1);
+            color: var(--primary-color);
+            font-size: 36px;
+            transition: var(--transition);
+        }
+        
+        .collab-card:hover .collab-icon {
+            background-color: var(--primary-color);
+            color: white;
+            transform: scale(1.1);
+        }
+        
+        .collab-card h4 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--secondary-color);
+        }
+        
+        .collab-card p {
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+        
+        /* Partners Section */
+        .partnership-section {
+            background-color: var(--light-bg);
+            padding: 80px 0;
         }
         
         .partner-card {
             border: none;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
+            border-radius: 15px;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
             margin-bottom: 30px;
             height: 100%;
             text-align: center;
-            padding: 30px 20px;
+            padding: 40px 25px;
+            background: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .partner-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-color) 0%, var(--secondary-color) 100%);
         }
         
         .partner-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-10px);
+            box-shadow: var(--card-hover-shadow);
         }
         
         .partner-logo {
             max-height: 80px;
-            margin-bottom: 20px;
+            max-width: 200px;
+            margin-bottom: 25px;
             filter: grayscale(100%);
-            transition: filter 0.3s ease;
+            transition: var(--transition);
         }
         
         .partner-card:hover .partner-logo {
             filter: grayscale(0%);
+            transform: scale(1.05);
         }
         
         .partner-type {
-            background-color: #28a745;
+            background-color: var(--primary-color);
             color: white;
-            padding: 3px 10px;
+            padding: 5px 15px;
             border-radius: 20px;
             font-size: 12px;
-            font-weight: bold;
+            font-weight: 600;
             display: inline-block;
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
+        }
+        
+        .partner-card h5 {
+            font-size: 1.2rem;
+            font-weight: 700;
             margin-bottom: 15px;
+            color: var(--secondary-color);
         }
         
-        .partnership-section {
-            background-color: #f8f9fa;
-            padding: 80px 0;
+        .partner-card p {
+            color: var(--text-light);
+            line-height: 1.6;
         }
         
-        .testimonial-card {
-            border-left: 5px solid #28a745;
-            border-radius: 5px;
-            padding: 30px;
-            margin-bottom: 30px;
-            background-color: white;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-        }
-        
-        .testimonial-photo {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-right: 20px;
-        }
-        
+        /* Stats Section */
         .stats-section {
             padding: 80px 0;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
         }
         
         .stat-item {
@@ -96,70 +310,189 @@
         }
         
         .stat-number {
-            font-size: 48px;
-            font-weight: bold;
-            color: #28a745;
-            margin-bottom: 10px;
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: white;
         }
         
         .stat-label {
-            font-size: 18px;
-            color: #6c757d;
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.9);
         }
         
-        .collaboration-types {
-            padding: 80px 0;
-        }
-        
-        .collab-card {
-            text-align: center;
-            padding: 30px 20px;
+        /* Testimonials */
+        .testimonial-card {
+            border-left: 5px solid var(--primary-color);
             border-radius: 10px;
-            background-color: white;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            height: 100%;
-            transition: transform 0.3s ease;
+            padding: 30px;
             margin-bottom: 30px;
+            background-color: white;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
         }
         
-        .collab-card:hover {
+        .testimonial-card:hover {
             transform: translateY(-5px);
+            box-shadow: var(--card-hover-shadow);
         }
         
-        .collab-icon {
+        .testimonial-photo {
             width: 80px;
             height: 80px;
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 20px;
-            background-color: rgba(40, 167, 69, 0.1);
-            color: #28a745;
-            font-size: 32px;
+            object-fit: cover;
+            margin-right: 20px;
+            border: 3px solid var(--primary-color);
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            padding: 80px 0;
+            background-color: var(--light-bg);
+        }
+        
+        .cta-card {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            border-radius: 15px;
+            padding: 60px 40px;
+            text-align: center;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .cta-card h3 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .cta-card p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
         }
         
         .btn-partner {
-            background-color: #28a745;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 5px;
+            background-color: white;
+            color: var(--primary-color);
+            padding: 12px 30px;
+            border-radius: 30px;
             text-decoration: none;
             display: inline-block;
-            transition: all 0.3s ease;
+            transition: var(--transition);
+            font-weight: 600;
+            border: 2px solid white;
         }
         
         .btn-partner:hover {
-            background-color: #218838;
+            background-color: transparent;
             color: white;
             text-decoration: none;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255,255,255,0.3);
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark-bg);
+            padding: 70px 0 30px;
+        }
+        
+        footer h5 {
+            font-weight: 700;
+            margin-bottom: 25px;
+            position: relative;
+        }
+        
+        footer h5::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 3px;
+            background: var(--primary-color);
+            bottom: -10px;
+            left: 0;
+        }
+        
+        footer p {
+            margin-bottom: 15px;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            transition: var(--transition);
+            margin-right: 10px;
+        }
+        
+        .social-links a:hover {
+            background: var(--primary-color);
+            transform: translateY(-5px);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .page-header {
+                padding: 80px 0;
+            }
+            
+            .page-header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .stat-number {
+                font-size: 2.5rem;
+            }
+            
+            .testimonial-card {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .testimonial-photo {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
         }
     </style>
 </head>
 
 <body>
     <header>
-        <nav id="nav-element" class="navbar general-nav navbar-expand-lg navbar-light bg-white">
+        <nav id="nav-element" class="navbar general-nav navbar-expand-lg navbar-light bg-white fixed-top">
             <div class="container">
                 <a class="navbar-brand" href="index.html">
                     <img src="logo_CAIDA.png" alt="logo-caida">
@@ -178,10 +511,6 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="mv.html">Mission et vision</a>
-                                <!--<a class="dropdown-item" href="og.html">Organisation et gouvernance</a>-->
-                                <!--<a class="dropdown-item" href="/centres-specialises">Centres spécialisés</a>
-                                <a class="dropdown-item" href="/equipe">Notre équipe</a>
-                                <a class="dropdown-item" href="/ethique">Éthique & politique</a>-->
                                 <a class="dropdown-item active" href="partenaires.html">Partenaires</a>
                             </div>
                         </li>
@@ -191,62 +520,27 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownProjet">
                                 <a class="dropdown-item" href="domaines.html">Domaines d'interventions</a>
-                                <!--<a class="dropdown-item" href="/portfolio">Portefeuilles de projet</a>-->
                             </div>
                         </li>
-                        <!--<li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownActualites" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Actualités
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdownActualites">
-                                <a class="dropdown-item" href="actualités.html">Actualités</a>
-                                <a class="dropdown-item" href="/espace-presse">Espace presse</a>
-                                <a class="dropdown-item" href="/evenement">Évènements</a>
-                            </div>
-                        </li>-->
-                       <!-- <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownImpact" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Impact
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdownImpact">
-                                <a class="dropdown-item" href="/resultat">Résultats</a>
-                                <a class="dropdown-item" href="/histoire-impact">Histoires d'impact</a>
-                                <a class="dropdown-item" href="/blog">Blog</a>
-                            </div>
-                        </li>-->
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownRessources" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Ressources
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownRessources">
                                 <a class="dropdown-item" href="publication.html">Publications</a>
-                                <!--<a class="dropdown-item" href="/centres-de-connaissance">Centres de connaissance</a>
-                                <a class="dropdown-item" href="/directives-de-marque">Directive de marque</a>
-                                <a class="dropdown-item" href="/reglement-lignes-directrices">Règlements et lignes directives</a>-->
                             </div>
                         </li>
-                        <!--<li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownOpportunités" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Opportunités
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdownOpportunités">
-                                <a class="dropdown-item" href="carrière.html">Carrières</a>
-                                <a class="dropdown-item" href="/passation-marche">Passation de marchés</a>
-                            </div>
-                        </li>-->
 
-                        <button id="" class="btn wb-search-btn">
+                        <button id="search-btn" class="btn wb-search-btn">
                             <i class="fa fa-search" aria-hidden="true"></i>
                         </button>
                     </ul>
-                    <div class="hide-element">
-                        <div class="search-bar-block d-flex align-items-center ">
-                            <button class="btn-hide-form ">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots" viewBox="0 0 16 16">
-                                    <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
-                                </svg>
+                    <div class="search-bar-block">
+                        <div class="d-flex align-items-center">
+                            <button class="btn-hide-form">
+                                <i class="fa fa-times"></i>
                             </button>
-                            <form action="/homesearch" class="mb-0 d-flex align-items-center">
+                            <form action="/homesearch" class="mb-0 d-flex align-items-center w-100">
                                 <input type="search" name="search-input" id="search" class="form-control mr-2" placeholder="Recherche" required>
                                 <button type="submit" class="btn btn-success btn-search"> <i class="fa fa-search" aria-hidden="true"></i></button>
                             </form>
@@ -257,8 +551,9 @@
         </nav>
     </header>
     
-    <div class="content-page">
-        <div class="page-header text-center">
+    <div class="content-page" style="padding-top: 80px;">
+        <!-- En-tête de page -->
+        <div class="page-header">
             <div class="container">
                 <h1>Partenaires</h1>
                 <p class="lead">Découvrez notre réseau de partenaires qui contribuent à la transformation agricole en Afrique</p>
@@ -266,16 +561,20 @@
         </div>
         
         <div class="container">
-            <div class="row mb-5">
-                <div class="col-md-8 mx-auto text-center">
-                    <h2 class="mb-4">Notre Approche du Partenariat</h2>
-                    <p class="lead">Chez CAIDA, nous croyons que la collaboration est essentielle pour relever les défis complexes de l'agriculture africaine. Nous travaillons avec un réseau diversifié de partenaires pour maximiser notre impact.</p>
+            <!-- Section d'introduction -->
+            <section class="fade-in">
+                <div class="row mb-5">
+                    <div class="col-md-8 mx-auto text-center">
+                        <h2 class="mb-4">Notre Approche du Partenariat</h2>
+                        <p class="lead">Chez CAIDA, nous croyons que la collaboration est essentielle pour relever les défis complexes de l'agriculture africaine. Nous travaillons avec un réseau diversifié de partenaires pour maximiser notre impact.</p>
+                    </div>
                 </div>
-            </div>
+            </section>
             
-            <div class="collaboration-types">
+            <!-- Types de collaboration -->
+            <section class="collaboration-types fade-in">
                 <div class="container">
-                    <h2 class="text-center mb-5">Types de Collaboration</h2>
+                    <h2 class="section-title">Types de Collaboration</h2>
                     
                     <div class="row">
                         <div class="col-md-4">
@@ -341,18 +640,19 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </section>
             
-            <div class="partnership-section">
+            <!-- Section Partenaires -->
+            <section class="partnership-section fade-in">
                 <div class="container">
-                    <h2 class="text-center mb-5">Nos Partenaires</h2>
+                    <h2 class="section-title">Nos Partenaires</h2>
                     
-                    <!--<h3 class="mb-4">Partenaires Institutionnels et Financiers</h3>
+                    <h3 class="mb-4 text-center">Partenaires Institutionnels et Financiers</h3>
                     <div class="row">
                         <div class="col-md-4">
                             <div class="partner-card">
                                 <span class="partner-type">Institutionnel</span>
-                                <img src="https://via.placeholder.com/150x80?text=Banque+Mondiale" alt="Banque Mondiale" class="partner-logo">
+                                <img src="https://via.placeholder.com/200x80/28a745/ffffff?text=Banque+Mondiale" alt="Banque Mondiale" class="partner-logo">
                                 <h5>Banque Mondiale</h5>
                                 <p>Partenariat pour le financement de projets d'agriculture résiliente au changement climatique dans 8 pays d'Afrique de l'Ouest.</p>
                             </div>
@@ -361,7 +661,7 @@
                         <div class="col-md-4">
                             <div class="partner-card">
                                 <span class="partner-type">Institutionnel</span>
-                                <img src="https://via.placeholder.com/150x80?text=Union+Européenne" alt="Union Européenne" class="partner-logo">
+                                <img src="https://via.placeholder.com/200x80/007bff/ffffff?text=Union+Européenne" alt="Union Européenne" class="partner-logo">
                                 <h5>Union Européenne</h5>
                                 <p>Collaboration dans le cadre du programme "Innovation Agricole pour l'Afrique" visant à soutenir 50 000 petits producteurs.</p>
                             </div>
@@ -370,19 +670,19 @@
                         <div class="col-md-4">
                             <div class="partner-card">
                                 <span class="partner-type">Institutionnel</span>
-                                <img src="https://via.placeholder.com/150x80?text=USAID" alt="USAID" class="partner-logo">
+                                <img src="https://via.placeholder.com/200x80/6f42c1/ffffff?text=USAID" alt="USAID" class="partner-logo">
                                 <h5>USAID</h5>
                                 <p>Partenariat pour le développement de chaînes de valeur résilientes et la promotion de l'entreprenariat agricole des jeunes.</p>
                             </div>
                         </div>
                     </div>
                     
-                    <h3 class="mb-4 mt-5">Partenaires Techniques et de Recherche</h3>
+                    <h3 class="mb-4 mt-5 text-center">Partenaires Techniques et de Recherche</h3>
                     <div class="row">
                         <div class="col-md-4">
                             <div class="partner-card">
                                 <span class="partner-type">Recherche</span>
-                                <img src="https://via.placeholder.com/150x80?text=IITA" alt="IITA" class="partner-logo">
+                                <img src="https://via.placeholder.com/200x80/20c997/ffffff?text=IITA" alt="IITA" class="partner-logo">
                                 <h5>Institut International d'Agriculture Tropicale (IITA)</h5>
                                 <p>Collaboration pour le développement et la diffusion de variétés améliorées de cultures vivrières en Afrique de l'Ouest.</p>
                             </div>
@@ -391,7 +691,7 @@
                         <div class="col-md-4">
                             <div class="partner-card">
                                 <span class="partner-type">Recherche</span>
-                                <img src="https://via.placeholder.com/150x80?text=CIRAD" alt="CIRAD" class="partner-logo">
+                                <img src="https://via.placeholder.com/200x80/fd7e14/ffffff?text=CIRAD" alt="CIRAD" class="partner-logo">
                                 <h5>CIRAD</h5>
                                 <p>Partenariat de recherche sur l'agroécologie et la gestion durable des ressources naturelles en zones arides.</p>
                             </div>
@@ -400,19 +700,19 @@
                         <div class="col-md-4">
                             <div class="partner-card">
                                 <span class="partner-type">Recherche</span>
-                                <img src="https://via.placeholder.com/150x80?text=Wageningen" alt="Wageningen University" class="partner-logo">
+                                <img src="https://via.placeholder.com/200x80/e83e8c/ffffff?text=Wageningen" alt="Wageningen University" class="partner-logo">
                                 <h5>Université de Wageningen</h5>
                                 <p>Collaboration pour la recherche sur les systèmes alimentaires durables et la formation de jeunes chercheurs africains.</p>
                             </div>
                         </div>
                     </div>
                     
-                    <h3 class="mb-4 mt-5">Partenaires du Secteur Privé</h3>
+                    <h3 class="mb-4 mt-5 text-center">Partenaires du Secteur Privé</h3>
                     <div class="row">
                         <div class="col-md-4">
                             <div class="partner-card">
                                 <span class="partner-type">Privé</span>
-                                <img src="https://via.placeholder.com/150x80?text=AgriTech+Solutions" alt="AgriTech Solutions" class="partner-logo">
+                                <img src="https://via.placeholder.com/200x80/6f42c1/ffffff?text=AgriTech+Solutions" alt="AgriTech Solutions" class="partner-logo">
                                 <h5>AgriTech Solutions</h5>
                                 <p>Partenariat pour le déploiement de technologies d'irrigation intelligente et de capteurs agricoles dans 10 000 exploitations.</p>
                             </div>
@@ -421,7 +721,7 @@
                         <div class="col-md-4">
                             <div class="partner-card">
                                 <span class="partner-type">Privé</span>
-                                <img src="https://via.placeholder.com/150x80?text=Olam" alt="Olam" class="partner-logo">
+                                <img src="https://via.placeholder.com/200x80/20c997/ffffff?text=Olam" alt="Olam" class="partner-logo">
                                 <h5>Olam International</h5>
                                 <p>Collaboration pour le développement de chaînes d'approvisionnement durables pour le cacao et le café en Afrique de l'Ouest.</p>
                             </div>
@@ -430,48 +730,19 @@
                         <div class="col-md-4">
                             <div class="partner-card">
                                 <span class="partner-type">Privé</span>
-                                <img src="https://via.placeholder.com/150x80?text=Mastercard" alt="Mastercard Foundation" class="partner-logo">
+                                <img src="https://via.placeholder.com/200x80/fd7e14/ffffff?text=Mastercard" alt="Mastercard Foundation" class="partner-logo">
                                 <h5>Fondation Mastercard</h5>
                                 <p>Partenariat pour le programme "Young Africa Works" visant à créer des opportunités d'emploi pour les jeunes dans l'agriculture.</p>
                             </div>
                         </div>
                     </div>
-                    
-                    <h3 class="mb-4 mt-5">Partenaires de la Société Civile</h3>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="partner-card">
-                                <span class="partner-type">Société Civile</span>
-                                <img src="https://via.placeholder.com/150x80?text=Oxfam" alt="Oxfam" class="partner-logo">
-                                <h5>Oxfam</h5>
-                                <p>Collaboration pour des programmes d'autonomisation des femmes rurales et de renforcement des organisations paysannes.</p>
-                            </div>
-                        </div>
-                        
-                        <div class="col-md-4">
-                            <div class="partner-card">
-                                <span class="partner-type">Société Civile</span>
-                                <img src="https://via.placeholder.com/150x80?text=Action+Aid" alt="Action Aid" class="partner-logo">
-                                <h5>Action Aid</h5>
-                                <p>Partenariat pour des initiatives de plaidoyer sur les droits fonciers des femmes et l'accès équitable aux ressources agricoles.</p>
-                            </div>
-                        </div>
-                        
-                        <div class="col-md-4">
-                            <div class="partner-card">
-                                <span class="partner-type">Société Civile</span>
-                                <img src="https://via.placeholder.com/150x80?text=ROPPA" alt="ROPPA" class="partner-logo">
-                                <h5>ROPPA</h5>
-                                <p>Collaboration avec le Réseau des Organisations Paysannes et de Producteurs de l'Afrique de l'Ouest pour le plaidoyer politique.</p>
-                            </div>
-                        </div>
-                    </div>
                 </div>
-            </div>-->
+            </section>
             
-            <div class="stats-section">
+            <!-- Section Statistiques -->
+            <section class="stats-section fade-in">
                 <div class="container">
-                    <h2 class="text-center mb-5">L'Impact de Nos Partenariats</h2>
+                    <h2 class="text-center mb-5" style="color: white;">L'Impact de Nos Partenariats</h2>
                     <div class="row">
                         <div class="col-md-3">
                             <div class="stat-item">
@@ -499,10 +770,11 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </section>
             
-            <!--<div class="container my-5">
-                <h2 class="text-center mb-5">Témoignages de Nos Partenaires</h2>
+            <!-- Section Témoignages -->
+            <section class="container my-5 fade-in">
+                <h2 class="section-title">Témoignages de Nos Partenaires</h2>
                 
                 <div class="row">
                     <div class="col-md-6">
@@ -551,49 +823,52 @@
                         </div>
                     </div>
                 </div>
-            </div>-->
+            </section>
             
-            <div class="row">
-                <div class="col-md-8 mx-auto text-center">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <h3 class="mb-4">Devenir Partenaire de CAIDA</h3>
-                            <p class="mb-4">Vous souhaitez collaborer avec nous pour transformer l'agriculture africaine ? Découvrez comment devenir partenaire de CAIDA.</p>
-                            <a href="" class="btn-partner">En savoir plus</a>
+            <!-- Section CTA -->
+            <section class="cta-section fade-in">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-10 mx-auto">
+                            <div class="cta-card">
+                                <h3>Devenir Partenaire de CAIDA</h3>
+                                <p>Vous souhaitez collaborer avec nous pour transformer l'agriculture africaine ? Découvrez comment devenir partenaire de CAIDA et rejoindre notre réseau d'acteurs engagés.</p>
+                                <a href="#" class="btn-partner">En savoir plus</a>
+                            </div>
                         </div>
                     </div>
-                </div>https://www.coraf.org/img/arrow-right1.svg
-            </div>
+                </div>
+            </section>
         </div>
     </div>
     
-    <footer class="bg-dark text-white pt-5 pb-4 mt-5">
+    <footer class="bg-dark text-white">
         <div class="container">
             <div class="row">
-                <div class="col-md-4">
-                     <a class="navbar-brand" href="index.html">
-                    <img src="logo_CAIDA.png" alt="logo-caida">
-                </a>
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <a class="navbar-brand mb-3 d-block" href="index.html">
+                        <img src="logo_CAIDA.png" alt="logo-caida" style="height: 50px;">
+                    </a>
                     <p>Centre Africain d'Innovation pour le Développement Agricole</p>
                     <p>Transforming African Agriculture through Innovation</p>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4 mb-4 mb-md-0">
                     <h5>Contact</h5>
-                    <p><i class="fa fa-map-marker"></i> NZUESSI BO: 105 Yamoussoukro, Yamoussoukro, Région des lacs (Cote d’Ivoire)</p>
-                    <p><i class="fa fa-phone"></i> +225 0104310721/ +225 0104310720</p>
-                    <p><i class="fa fa-envelope"></i> caidaafrique@gmail.com</p>
+                    <p><i class="fa fa-map-marker mr-2"></i> NZUESSI BO: 105 Yamoussoukro, Yamoussoukro, Région des lacs (Cote d'Ivoire)</p>
+                    <p><i class="fa fa-phone mr-2"></i> +225 0104310721 / +225 0104310720</p>
+                    <p><i class="fa fa-envelope mr-2"></i> caidaafrique@gmail.com</p>
                 </div>
                 <div class="col-md-4">
                     <h5>Suivez-nous</h5>
-                    <div class="social-links">
-                        <a href="#" class="text-white mr-3"><i class="fa fa-facebook"></i></a>
-                        <a href="#" class="text-white mr-3"><i class="fa fa-twitter"></i></a>
-                        <a href="#" class="text-white mr-3"><i class="fa fa-linkedin"></i></a>
+                    <div class="social-links mt-4">
+                        <a href="#" class="text-white"><i class="fa fa-facebook"></i></a>
+                        <a href="#" class="text-white"><i class="fa fa-twitter"></i></a>
+                        <a href="#" class="text-white"><i class="fa fa-linkedin"></i></a>
                         <a href="#" class="text-white"><i class="fa fa-youtube"></i></a>
                     </div>
                 </div>
             </div>
-            <hr class="bg-white">
+            <hr class="bg-white my-5">
             <div class="row">
                 <div class="col-md-12 text-center">
                     <p>&copy; 2025 CAIDA. Tous droits réservés.</p>
@@ -602,18 +877,50 @@
         </div>
     </footer>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
     
     <script>
         $(document).ready(function(){
             // Gestion de la barre de recherche
-            $('.wb-search-btn').click(function(){
-                $('.hide-element').toggleClass('hide-element');
+            $('#search-btn').click(function(){
+                $('.search-bar-block').toggleClass('show');
             });
             
             $('.btn-hide-form').click(function(){
-                $('.search-bar-block').parent().addClass('hide-element');
+                $('.search-bar-block').removeClass('show');
+            });
+            
+            // Navbar scroll effect
+            $(window).scroll(function() {
+                if ($(window).scrollTop() > 50) {
+                    $('.general-nav').addClass('scrolled');
+                } else {
+                    $('.general-nav').removeClass('scrolled');
+                }
+            });
+            
+            // Animation au défilement
+            function checkFadeIn() {
+                $('.fade-in').each(function() {
+                    var elementTop = $(this).offset().top;
+                    var elementBottom = elementTop + $(this).outerHeight();
+                    var viewportTop = $(window).scrollTop();
+                    var viewportBottom = viewportTop + $(window).height();
+                    
+                    if (elementBottom > viewportTop && elementTop < viewportBottom) {
+                        $(this).addClass('visible');
+                    }
+                });
+            }
+            
+            // Vérifier au chargement
+            checkFadeIn();
+            
+            // Vérifier au défilement
+            $(window).scroll(function() {
+                checkFadeIn();
             });
         });
     </script>
